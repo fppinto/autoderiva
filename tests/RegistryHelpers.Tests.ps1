@@ -71,32 +71,32 @@ Describe 'Registry Helper Functions' {
         }
 
         It 'Handles UnauthorizedAccessException via fallback if redirected' {
-             Mock Convert-AutoDerivaRegistryPathToInteractiveUser { return 'REDIRECTED_PATH' }
-             Mock Test-Path { return $true }
+            Mock Convert-AutoDerivaRegistryPathToInteractiveUser { return 'REDIRECTED_PATH' }
+            Mock Test-Path { return $true }
              
-             # First attempt fails
-             Mock New-ItemProperty { throw [System.UnauthorizedAccessException]::new("Access Denied") } -ParameterFilter { $Path -eq 'REDIRECTED_PATH' }
+            # First attempt fails
+            Mock New-ItemProperty { throw [System.UnauthorizedAccessException]::new("Access Denied") } -ParameterFilter { $Path -eq 'REDIRECTED_PATH' }
              
-             # Fallback attempt succeeds
-             Mock New-ItemProperty { return $true } -ParameterFilter { $Path -eq 'HKCU:\Orig' }
+            # Fallback attempt succeeds
+            Mock New-ItemProperty { return $true } -ParameterFilter { $Path -eq 'HKCU:\Orig' }
 
-             Set-AutoDerivaRegistryDword -Path 'HKCU:\Orig' -Name 'Val' -Value 1
+            Set-AutoDerivaRegistryDword -Path 'HKCU:\Orig' -Name 'Val' -Value 1
 
-             # Should call New-ItemProperty twice: once for redirected, once for fallback
-             Assert-MockCalled New-ItemProperty -Times 2
-             Assert-MockCalled Write-AutoDerivaLog -ParameterFilter { $Status -eq 'INFO' -and $Message -like '*fallback*' }
+            # Should call New-ItemProperty twice: once for redirected, once for fallback
+            Assert-MockCalled New-ItemProperty -Times 2
+            Assert-MockCalled Write-AutoDerivaLog -ParameterFilter { $Status -eq 'INFO' -and $Message -like '*fallback*' }
         }
         
-         It 'Logs warning if UnauthorizedAccessException occurs without redirection' {
-             Mock Convert-AutoDerivaRegistryPathToInteractiveUser { return 'HKCU:\Orig' } # No redirect
-             Mock Test-Path { return $true }
+        It 'Logs warning if UnauthorizedAccessException occurs without redirection' {
+            Mock Convert-AutoDerivaRegistryPathToInteractiveUser { return 'HKCU:\Orig' } # No redirect
+            Mock Test-Path { return $true }
              
-             Mock New-ItemProperty { throw [System.UnauthorizedAccessException]::new("Access Denied") } 
+            Mock New-ItemProperty { throw [System.UnauthorizedAccessException]::new("Access Denied") } 
 
-             Set-AutoDerivaRegistryDword -Path 'HKCU:\Orig' -Name 'Val' -Value 1
+            Set-AutoDerivaRegistryDword -Path 'HKCU:\Orig' -Name 'Val' -Value 1
 
-             Assert-MockCalled New-ItemProperty -Times 1
-             Assert-MockCalled Write-AutoDerivaLog -ParameterFilter { $Status -eq 'WARN' -and $Message -like '*Insufficient permissions*' }
+            Assert-MockCalled New-ItemProperty -Times 1
+            Assert-MockCalled Write-AutoDerivaLog -ParameterFilter { $Status -eq 'WARN' -and $Message -like '*Insufficient permissions*' }
         }
     }
 }

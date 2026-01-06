@@ -26,8 +26,8 @@ Describe 'Wi-Fi Profile Cleanup' {
         }
         
         Mock Write-AutoDerivaLog {
-             param($Level, $Message, $Color)
-             # Write-Host "LOG: [$Level] $Message" -ForegroundColor Cyan
+            param($Level, $Message, $Color)
+            # Write-Host "LOG: [$Level] $Message" -ForegroundColor Cyan
         }
 
         Mock Test-AutoDerivaPromptAvailable { return $true }
@@ -130,7 +130,7 @@ Describe 'Wi-Fi Profile Cleanup' {
     }
 
     It 'Parses profile names with spaces correctly' {
-         $script:NetshShimBlock = {
+        $script:NetshShimBlock = {
             # Use automatic $args
             $cmdLine = $args -join ' '
             $script:NetshCalls.Add($cmdLine)
