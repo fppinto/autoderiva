@@ -10,7 +10,6 @@ Describe 'Wi-Fi Profile Cleanup' {
         # defining a function with the same name usually takes precedence.
         function netsh.exe {
             # Pass all arguments to the shim block using splatting
-            Write-Host "DEBUG-SHIM-ENTRY: ArgCount=$($args.Count) Args=$($args -join '|')"
             & $script:NetshShimBlock @args
         }
     }
@@ -28,7 +27,7 @@ Describe 'Wi-Fi Profile Cleanup' {
         
         Mock Write-AutoDerivaLog {
              param($Level, $Message, $Color)
-             Write-Host "LOG: [$Level] $Message" -ForegroundColor Cyan
+             # Write-Host "LOG: [$Level] $Message" -ForegroundColor Cyan
         }
 
         Mock Test-AutoDerivaPromptAvailable { return $true }
@@ -40,10 +39,8 @@ Describe 'Wi-Fi Profile Cleanup' {
             # Use automatic $args to capture all passed arguments
             $cmdLine = $args -join ' '
             $script:NetshCalls.Add($cmdLine)
-            Write-Host "DEBUG-BLOCK: CmdLine='$cmdLine'"
 
             if ($cmdLine -match 'show profiles') {
-                Write-Host "DEBUG-BLOCK: Returning profiles list"
                 return @(
                     "Profiles on interface Wi-Fi:",
                     "Group Policy Profiles (Read Only)",
@@ -67,7 +64,7 @@ Describe 'Wi-Fi Profile Cleanup' {
     It 'Enumerates profiles correctly from netsh output' {
         Clear-WifiProfile
 
-        $script:NetshCalls.Count | Should -Be 1
+        $script:NetshCalls.Count | Should -Be 4
         $script:NetshCalls[0] | Should -Be 'wlan show profiles'
         
         # In 'All' mode, it should proceed to delete. The logic executes `netsh wlan delete profile name="..."`
@@ -77,32 +74,33 @@ Describe 'Wi-Fi Profile Cleanup' {
     }
     
     It 'Deletes ALL profiles when mode is All' {
-        $Script:Config.WifiCleanupMode = 'All'
+        $Config.WifiCleanupMode = 'All'
         
         Clear-WifiProfile
         
         # 1 call to show, 3 calls to delete
         $script:NetshCalls.Count | Should -Be 4
         $script:NetshCalls[0] | Should -Be 'wlan show profiles'
-        $script:NetshCalls[1] | Should -Match 'delete profile name="MatchWifi"'
-        $script:NetshCalls[2] | Should -Match 'delete profile name="OtherWifi"'
-        $script:NetshCalls[3] | Should -Match 'delete profile name="TargetWifi"'
+        # Quotes are stripped by PS argument binding when calling function shims
+        $script:NetshCalls[1] | Should -Match 'delete profile name=MatchWifi'
+        $script:NetshCalls[2] | Should -Match 'delete profile name=OtherWifi'
+        $script:NetshCalls[3] | Should -Match 'delete profile name=TargetWifi'
     }
 
     It 'Deletes Single profile when mode is SingleOnly' {
-        $Script:Config.WifiCleanupMode = 'SingleOnly'
-        $Script:Config.WifiProfileNameToDelete = 'TargetWifi'
+        $Config.WifiCleanupMode = 'SingleOnly'
+        $Config.WifiProfileNameToDelete = 'TargetWifi'
 
         Clear-WifiProfile
         
         # 1 call to show, 1 call to delete
         $script:NetshCalls.Count | Should -Be 2
-        $script:NetshCalls[1] | Should -Match 'delete profile name="TargetWifi"'
+        $script:NetshCalls[1] | Should -Match 'delete profile name=TargetWifi'
     }
 
     It 'Does not delete if SingleOnly target not found' {
-        $Script:Config.WifiCleanupMode = 'SingleOnly'
-        $Script:Config.WifiProfileNameToDelete = 'MissingWifi'
+        $Config.WifiCleanupMode = 'SingleOnly'
+        $Config.WifiProfileNameToDelete = 'MissingWifi'
 
         Clear-WifiProfile
 
@@ -112,7 +110,7 @@ Describe 'Wi-Fi Profile Cleanup' {
     }
 
     It 'Skips deletion if confirmation declined' {
-        $Script:Config.AskBeforeClearingWifiProfiles = $true
+        $Config.AskBeforeClearingWifiProfiles = $true
         
         Mock Read-Host { return 'n' } # Decline
 
@@ -122,7 +120,7 @@ Describe 'Wi-Fi Profile Cleanup' {
     }
 
     It 'Proceeds with deletion if confirmation accepted' {
-        $Script:Config.AskBeforeClearingWifiProfiles = $true
+        $Config.AskBeforeClearingWifiProfiles = $true
         
         Mock Read-Host { return 'y' } # Accept
 
@@ -148,13 +146,13 @@ Describe 'Wi-Fi Profile Cleanup' {
             return @()
         }
 
-        $Script:Config.WifiCleanupMode = 'All'
+        $Config.WifiCleanupMode = 'All'
         Clear-WifiProfile
 
         # The names should be trimmed
         # "Starbucks WiFi"
         # "Weird Spacing"
-        $script:NetshCalls | Should -Contain 'wlan delete profile name="Starbucks WiFi"'
-        $script:NetshCalls | Should -Contain 'wlan delete profile name="Weird Spacing"'
+        $script:NetshCalls | Should -Contain 'wlan delete profile name=Starbucks WiFi'
+        $script:NetshCalls | Should -Contain 'wlan delete profile name=Weird Spacing'
     }
 }
