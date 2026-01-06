@@ -27,7 +27,7 @@ Describe 'Edge Case Tests' {
             
             $config = @{ 
                 EnableLogging = $false 
-                CucoDownload = $false
+                CucoDownload  = $false
             }
             
             # Create a mock for Write-Log to capture logs
@@ -63,7 +63,8 @@ Describe 'Edge Case Tests' {
                 
                 $outputStr = $output | Out-String
                 $outputStr | Should -Match "DNS resolution failed"
-            } catch {
+            }
+            catch {
                 # If it throws, that might be fine too if it's a throw-termination
             }
         }
@@ -78,7 +79,7 @@ Describe 'Edge Case Tests' {
             # Script calls Load-Configuration
             
             # We can just verify it fails to run
-             try {
+            try {
                 # We need to run it in a new scope/process to ensure it fails fresh
                 # But creating a new process makes Pester coverage/mocking hard.
                 # Since we want to test behavior, checking exit code via -ErrorAction Stop is tricky for scripts.
@@ -92,7 +93,8 @@ Describe 'Edge Case Tests' {
                 # If we are here, it didn't throw specific error, which matches "Ignoring".
                 # So we should assertions that it ignored it.
                 $success = $true
-            } catch {
+            }
+            catch {
                 $errorMsg = $_.Exception.Message
                 $success = $false
             }
@@ -105,29 +107,29 @@ Describe 'Edge Case Tests' {
         }
         
         It 'Handles missing Config Defaults file' {
-             # If we point -ConfigUrl to garbage and don't have local file?
-             # The script defaults to looking for config.defaults.json in PSScriptRoot.
-             # We can't delete the real file.
-             # But we can try to run from a different directory where the file is missing?
-             # The script resolves path relative to itself.
+            # If we point -ConfigUrl to garbage and don't have local file?
+            # The script defaults to looking for config.defaults.json in PSScriptRoot.
+            # We can't delete the real file.
+            # But we can try to run from a different directory where the file is missing?
+            # The script resolves path relative to itself.
              
-             # This is hard to test without moving the script.
+            # This is hard to test without moving the script.
         }
     }
 
     Context 'File System Edge Cases' {
         It 'Gracefully handles write permission error on log file' {
-             # We can mock New-Item or Set-Content to throw "Access Denied" for logs
+            # We can mock New-Item or Set-Content to throw "Access Denied" for logs
         }
     }
 
     Context 'Parameter Combinations' {
         It 'DryRun and DownloadOnly together should respect DryRun (no downloads)' {
-             # Verify logic priorities
-             $params = @{ DryRun = $true; DownloadAllAndExit = $true }
-             # Run Get-AutoDerivaEffectiveConfig logic?
+            # Verify logic priorities
+            $params = @{ DryRun = $true; DownloadAllAndExit = $true }
+            # Run Get-AutoDerivaEffectiveConfig logic?
              
-             # If we run the script, we expect "Dry run enabled" and NO "Downloading..." messages.
+            # If we run the script, we expect "Dry run enabled" and NO "Downloading..." messages.
         }
     }
 }
