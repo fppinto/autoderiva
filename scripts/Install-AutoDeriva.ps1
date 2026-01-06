@@ -51,8 +51,8 @@ param(
     # File integrity verification
     [bool]$VerifyFileHashes,
     [bool]$DeleteFilesOnHashMismatch,
-    [ValidateSet('Continue', 'SkipDriver', 'Abort')][string]$HashMismatchPolicy,
-    [ValidateSet('Parallel', 'Single')][string]$HashVerifyMode,
+    [ValidateSet('Continue', 'SkipDriver', 'Abort')][string]$HashMismatchPolicy = 'Continue',
+    [ValidateSet('Parallel', 'Single')][string]$HashVerifyMode = 'Parallel',
     [int]$HashVerifyMaxConcurrency,
 
     # Driver scan behavior
@@ -69,7 +69,7 @@ param(
     [switch]$ClearWifiProfiles,
     [Alias('NoClearWifiProfiles')][switch]$NoWifiCleanup,
     # WifiCleanupMode: SingleOnly (delete only WifiProfileNameToDelete), All, or None.
-    [ValidateSet('SingleOnly', 'All', 'None')][string]$WifiCleanupMode,
+    [ValidateSet('SingleOnly', 'All', 'None')][string]$WifiCleanupMode = 'SingleOnly',
     [Alias('WifiName', 'WifiProfileName')][string]$WifiProfileNameToDelete,
     [switch]$AskBeforeClearingWifiProfiles,
     [switch]$NoAskBeforeClearingWifiProfiles,
@@ -305,7 +305,7 @@ function Get-AutoDerivaInteractiveUserSid {
     try {
         # Fallback: use loaded user hives under HKU when no interactive process is discoverable.
         $candidateHives = Get-ChildItem -Path 'Registry::HKEY_USERS' -ErrorAction Stop |
-            Where-Object { $_.PSChildName -match '^S-1-(5-21|12-1)-' }
+        Where-Object { $_.PSChildName -match '^S-1-(5-21|12-1)-' }
 
         foreach ($hive in $candidateHives) {
             $volatileEnvPath = Join-Path $hive.PSPath 'Volatile Environment'
