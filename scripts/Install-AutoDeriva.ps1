@@ -88,7 +88,7 @@ param(
     [switch]$NoHideTaskbarSearch,
 
     # Performance tuning
-    [ValidateSet('Parallel', 'Single')][string]$DeviceScanMode,
+    [ValidateSet('Parallel', 'Single')][string]$DeviceScanMode = 'Parallel',
     [int]$DeviceScanMaxConcurrency,
 
     # Stats display
