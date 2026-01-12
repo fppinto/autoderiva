@@ -22,18 +22,18 @@ Describe 'AutoDeriva Full Integration' {
 
         function Set-Config {
             param($Name, $Value)
-            if ($null -eq $Script:Config) { $Script:Config = @{} }
+            if ($null -eq $Config) { $Config = @{} }
             $exists = $false
-            if ($Script:Config -is [hashtable]) {
-                $Script:Config[$Name] = $Value
+            if ($Config -is [hashtable]) {
+                $Config[$Name] = $Value
                 $exists = $true
             }
-            elseif ($Script:Config.PSObject.Properties.Match($Name).Count -gt 0) {
-                $Script:Config.$Name = $Value
+            elseif ($Config.PSObject.Properties.Match($Name).Count -gt 0) {
+                $Config.$Name = $Value
                 $exists = $true
             }
             if (-not $exists) {
-                $Script:Config | Add-Member -Name $Name -Value $Value -MemberType NoteProperty -Force
+                $Config | Add-Member -Name $Name -Value $Value -MemberType NoteProperty -Force
             }
         }
     }
