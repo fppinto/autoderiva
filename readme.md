@@ -1,4 +1,11 @@
-# AutoDeriva
+
+<p align="center" style="text-align: center">
+    <img width="250" height="250" style="text-align: center" align="center" src="https://github.com/user-attachments/assets/f3aa45ed-cba8-46d3-a19b-14c4877a8212" />
+    <h1 align="center">AutoDeriva</h1>
+    <br/>
+    <br/>
+    <img width="978" height="513" alt="screenshot" src="https://github.com/user-attachments/assets/5bc5dcff-f764-48cb-bf46-7174357acabe" />
+</p>
 
 [![CI](https://img.shields.io/github/actions/workflow/status/supermarsx/autoderiva/ci.yml?branch=main&style=flat-square)](https://github.com/supermarsx/autoderiva/actions/workflows/ci.yml)
 ![GitHub stars](https://img.shields.io/github/stars/supermarsx/autoderiva?style=flat-square)
