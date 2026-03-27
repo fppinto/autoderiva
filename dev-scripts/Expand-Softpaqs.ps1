@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Extracts HP Softpaq .exe files from a folder and organises them for import into this repo.
 
@@ -114,7 +114,7 @@ foreach ($exe in $exeFiles) {
     Start-Sleep -Milliseconds 500
 
     if ((Get-ChildItem -Path $tempDir -Recurse -File).Count -eq 0) {
-        Write-Host "  WARN: No files extracted from $($exe.Name) — skipping." -ForegroundColor Yellow
+        Write-Host "  WARN: No files extracted from $($exe.Name) - skipping." -ForegroundColor Yellow
         Remove-Item -Recurse -Force $tempDir
         continue
     }
