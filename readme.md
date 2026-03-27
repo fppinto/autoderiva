@@ -230,10 +230,13 @@ Enable hash verification (keep files by default; skip affected drivers on mismat
 
 ## 💻 Supported Models
 
-AutoDeriva currently supports drivers for the following models (and more):
+AutoDeriva currently supports drivers for the following models:
 
 *   **GW1-W149**
 *   **HP 240 G8**
+*   **HP 250R G9**
+*   **Insys WHA-14P2**
+*   **Leap T304 (SF20GM7)**
 *   **Leap T304 (SF20PA6W)**
 
 ## 📦 Included Drivers
