@@ -12,7 +12,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/fppinto/autoderiva?style=flat-square)
 ![GitHub watchers](https://img.shields.io/github/watchers/fppinto/autoderiva?style=flat-square)
 ![Repo Size](https://img.shields.io/github/repo-size/fppinto/autoderiva?style=flat-square)
-![Driver Count](https://img.shields.io/badge/Drivers-243+-blue?style=flat-square)
+![Driver Count](https://img.shields.io/badge/Drivers-250+-blue?style=flat-square)
 [![Documentation](https://img.shields.io/badge/Docs-Configuration-blue?style=flat-square)](docs/configuration.md)
 [![Download BAT](https://img.shields.io/badge/Download-Install--AutoDeriva.bat-blue?style=flat-square)](https://github.com/fppinto/autoderiva/releases/latest/download/Install-AutoDeriva.bat)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](license.md)
