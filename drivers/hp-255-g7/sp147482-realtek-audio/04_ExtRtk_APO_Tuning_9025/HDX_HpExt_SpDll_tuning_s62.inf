@@ -1,0 +1,60 @@
+[Version]
+Signature="$Windows NT$"
+Class=Extension
+ClassGuid={e2f84ce7-8efa-411c-aa69-97454ca4cb57}
+Provider=Realtek
+ExtensionId={7f7901fa-ea73-4a95-bada-55bf89f37009}
+CatalogFile=HDXRTAPOExt.cat
+DriverVer = 09/08/2020, 6.0.9025.1
+
+[SourceDisksNames]
+222 = %DiskId1%
+
+[SourceDisksFiles]
+gen4pkey_s62.dat=222
+
+[DestinationDirs]
+DefaultDestDir=13
+
+[Manufacturer]
+"Intel(R) Corporation" = Intel, NTAMD64.10.0...16273
+
+[Intel.NTAMD64.10.0...16273]
+; 62mm
+%Device.ExtensionDesc% = DeviceExtension_Install,INTELAUDIO\FUNC_01&VEN_10EC&DEV_0245&SUBSYS_103C87F6
+%Device.ExtensionDesc% = DeviceExtension_Install,INTELAUDIO\FUNC_01&VEN_10EC&DEV_0245&SUBSYS_103C87F7
+%Device.ExtensionDesc% = DeviceExtension_Install,INTELAUDIO\FUNC_01&VEN_10EC&DEV_0245&SUBSYS_103C885A
+%Device.ExtensionDesc% = DeviceExtension_Install,INTELAUDIO\FUNC_01&VEN_10EC&DEV_0245&SUBSYS_103C885B
+%Device.ExtensionDesc% = DeviceExtension_Install,INTELAUDIO\FUNC_01&VEN_10EC&DEV_0285&SUBSYS_103C8811
+%Device.ExtensionDesc% = DeviceExtension_Install,INTELAUDIO\FUNC_01&VEN_10EC&DEV_0285&SUBSYS_103C8812
+
+[DeviceExtension_Install]
+CopyFiles = Gen4pKey.CopyList
+AddReg = Int2ndConfig.AddReg
+
+[Gen4pKey.CopyList]
+gen4pkey_s62.dat
+
+[Int2ndConfig.AddReg]
+HKLM,SYSTEM\CurrentControlSet\Services\IntelAudioService\Config,"ppDllName",0x00020000,%%SystemRoot%%\system32\RTKSpeechPP2_2.dll
+HKLM,SYSTEM\CurrentControlSet\Services\IntelAudioService\Config,"ppDllConfigurationFile",,%13%\gen4pkey_s62.dat
+HKLM,SYSTEM\CurrentControlSet\Services\IntelAudioService\Parameters,"ppDllName",0x00020000,%%SystemRoot%%\system32\RTKSpeechPP2_2.dll
+HKLM,SYSTEM\CurrentControlSet\Services\IntelAudioService\Parameters,"ppDllConfigurationFile",,%13%\gen4pkey_s62.dat
+
+[Int2ndConfig.AddReg.Security]
+"G:BUD:(A;CIOI;KA;;;BU)"
+
+[DeviceExtension_Install.Components]
+AddComponent = RealtekSSTPPDLL,,RealtekSSTPPDLL_Install
+
+[RealtekSSTPPDLL_Install]
+ComponentIDs = VEN_10EC&SSTPPDLL_0011
+Description = "Realtek Speech Preprocessing IP DLL Component"
+
+[Strings]
+Device.ExtensionDesc = "Intel Device Extension"
+DiskId1              = "Intel Device Extension Installation Disk"
+
+REG_BINARY = 0x00000001
+REG_DWORD = 0x00010001
+REG_MULTI_SZ = 0x00010000
