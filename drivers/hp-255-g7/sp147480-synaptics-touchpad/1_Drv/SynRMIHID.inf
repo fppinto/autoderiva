@@ -1,0 +1,122 @@
+;----------------------------------------------------------------------------
+; SynRMIHID.inf
+;
+; Copyright (c) 1996-2018, Synaptics Incorporated
+;----------------------------------------------------------------------------
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = HIDClass
+ClassGuid   = {745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider    = %Provider%
+CatalogFile = SynTP.cat
+DriverVer=04/20/2020, 19.5.35.54
+
+[DestinationDirs]
+DefaultDestDir        = 12 ; Drivers directory
+CopyFiles_Drivers     = 12 ; Drivers directory
+
+CopyFiles_ProgFiles   = 16422, %targetdir%  ; Program files
+[SourceDisksNames]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+SynRMIHIDUWP.sys  = 1
+
+;*****************************************
+; SynRMIHID  Install Section
+;*****************************************
+;----------------------------------------------------------------------------
+; Manufacturer Sections
+;----------------------------------------------------------------------------
+
+[Manufacturer]
+%SynMfg% = SynMfg, NTx86, NTamd64
+
+[SynMfg.NTx86]
+; No support
+
+[SynMfg.NTamd64]
+
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VEN_MSFT&DEV_0001&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_0461&PID_4E5B&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_0461&PID_4E5C&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_06CB&PID_0001&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_06CB&PID_2239&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_06CB&PID_2319&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_06CB&PID_5710&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_06CB&PID_5711&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_06CB&PID_5712&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_06CB&PID_5713&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_06CB&PID_7AF9&Col04
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_06CB&PID_7D29&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_0D62&PID_0D97&MI_01&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\VID_103C&PID_2152&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\SYN1E9D&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\SYN1EA1&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\SYN1EA2&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\SYN1EB2&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\SYN1EB3&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\SYN1EB7&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\SYN1EDE&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\SYN1EE3&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\SYN1EFD&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\SYNA327E&Col02
+%SynRMIHID.DeviceDesc% = SynRMIHID_Device,HID\SYNA327F&Col02
+
+[SynRMIHID_Device.NT]
+CopyFiles=CopyFiles_Drivers
+AddReg = Common_AddReg
+
+[SynRMIHID_Device_With_Service.NT]
+CopyFiles=CopyFiles_Drivers
+AddReg = Common_AddReg
+
+[Common_AddReg]
+
+[CopyFiles_Drivers]
+SynRMIHID.sys,SynRMIHIDUWP.sys,,0x00000001
+
+[SynRMIHID_Device.NT.Services]
+Include = input.inf
+Needs = HID_Raw_Inst.NT.Services
+AddService = SynRMIHID,,SynRMIHID_Service_Inst, SynRMIHID_EventLog_Inst
+
+[SynRMIHID_Device_With_Service.NT.Services]
+Include = input.inf
+Needs = HID_Raw_Inst.NT.Services
+AddService = SynRMIHID,,SynRMIHID_Service_Inst, SynRMIHID_EventLog_Inst
+
+[SynRMIHID_AddReg.HW]
+HKR,,"UpperFilters",0x00010000,"SynRMIHID"
+
+[SynRMIHID_Device.NT.HW]
+AddReg = SynRMIHID_AddReg.HW
+
+[SynRMIHID_Device_With_Service.NT.HW]
+AddReg = SynRMIHID_AddReg.HW
+
+; -------------- SynRMIHID driver install sections
+[SynRMIHID_Service_Inst]
+DisplayName    = %SynRMIHID.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START 
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\SynRMIHID.sys
+
+[SynRMIHID_EventLog_Inst]
+AddReg = SynRMIHID_EventLog_AddReg
+
+[SynRMIHID_EventLog_AddReg]
+HKR,,EventMessageFile,0x00020000,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\SynRMIHID.sys"
+HKR,,TypesSupported,0x00010001,7
+
+[Strings]
+Provider               = "Synaptics"
+SynMfg                 = "Synaptics"
+DiskId1                = "Synaptics HID Installation Disk"
+SynRMIHID.DeviceDesc   = "Synaptics HID Device"
+SynRMIHID.SVCDESC      = "Synaptics HID Service"
+SynTPEnhService.SVCDESC = "SynTPEnhService"
+ClassName              = "HID Device"
+TargetDir              = "Synaptics\SynTP"

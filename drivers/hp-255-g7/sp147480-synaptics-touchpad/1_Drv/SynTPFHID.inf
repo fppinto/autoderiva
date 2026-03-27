@@ -1,0 +1,128 @@
+;----------------------------------------------------------------------------
+; SynTPFHID.inf
+;
+; Copyright (c) 2017-2018, Synaptics Incorporated
+;----------------------------------------------------------------------------
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = HIDClass
+ClassGuid   = {745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider    = %Provider%
+CatalogFile = SynTP.cat
+DriverVer=04/20/2020, 19.5.35.54
+
+[SourceDisksNames]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+SynTPUWP.sys  = 1
+
+[DestinationDirs]
+DefaultDestDir        = 12 ; Drivers directory
+CopyFiles_Drivers     = 12 ; Drivers directory
+
+[CopyFiles_Drivers]
+SynTP.sys,SynTPUWP.sys,,0x00000001
+
+;----------------------------------------------------------------------------
+; Manufacturer Sections
+;----------------------------------------------------------------------------
+[Manufacturer]
+%SynMfg% = SynMfg, NTx86, NTamd64; (Standard types)
+
+[SynMfg.NTx86]
+; No support
+
+[SynMfg.NTamd64]
+
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA3289&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA328B&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA328C&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA328D&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA328E&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA328F&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA3290&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA3291&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA3292&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA3293&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA3294&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA3295&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA3296&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA3297&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA3298&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA329A&Col03 
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA329B&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA329C&Col02
+
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA329D&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA329E&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA329F&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32A0&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32A1&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32A2&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32A3&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32A4&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32A5&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32A6&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32A7&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32A8&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32A9&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32AA&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32AB&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32AC&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32AD&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32AE&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32AF&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32B0&Col02
+%SynTPFilterHID.DeviceDesc% = SynTPFilterHID_Device,HID\SYNA32B1&Col02
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[SynTPFilterHID_Device.NT]
+CopyFiles=CopyFiles_Drivers
+AddReg = Common_AddReg
+
+[SynTPFilterHID_Device_With_Service.NT]
+CopyFiles=CopyFiles_Drivers
+AddReg = Common_AddReg
+
+[Common_AddReg]
+HKR,Software\Synaptics\SynTPFilterHID,DriverVersion,0x00000000,"19.5.35.54"
+
+[SynTPFilterHID_Device.NT.Services]
+Include = input.inf
+Needs = HID_Raw_Inst.NT.Services
+AddService = SynTPFilterHID,,SynTPFilterHID_Service_Inst
+
+[SynTPFilterHID_Device_With_Service.NT.Services]
+Include = input.inf
+Needs = HID_Raw_Inst.NT.Services
+AddService = SynTPFilterHID,,SynTPFilterHID_Service_Inst
+
+[SynTPFilterHID_AddReg.HW]
+HKR,,"UpperFilters",0x00010000,"SynTP"
+HKR,,SynPortType,0x00010001,12
+
+[SynTPFilterHID_Device.NT.HW]
+AddReg = SynTPFilterHID_AddReg.HW
+
+[SynTPFilterHID_Device_With_Service.NT.HW]
+AddReg = SynTPFilterHID_AddReg.HW
+; -------------- SynTPFHID driver install sections
+[SynTPFilterHID_Service_Inst]
+DisplayName    = %SynTPFilterHID.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START 
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\SynTP.sys
+
+[Strings]
+Provider               = "Synaptics"
+SynMfg                 = "Synaptics"
+DiskId1                = "Synaptics TPFHID Installation Disk"
+SynTPFilterHID.DeviceDesc   = "Synaptics TPFHID Device"
+SynTPFilterHID.SVCDESC      = "Synaptics TPFHID Service"
+SynTPEnhService.SVCDESC = "SynTPEnhService"
+TargetDir              = "Synaptics\SynTP"

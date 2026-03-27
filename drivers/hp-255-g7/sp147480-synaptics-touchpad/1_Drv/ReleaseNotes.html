@@ -1,0 +1,2449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Synaptics Drivers Release Notes</title>
+
+<style>
+body {
+margin: 0;
+padding: 0;
+font-family: Calibri,Tahoma, Arial;
+background-color: #fff;
+}
+
+#wrapper {
+width: 1200px;
+margin: 0px auto;
+background-color: #fff;
+}
+
+#header {
+margin: 0;
+padding: 0;
+padding-bottom: 0.5cm;
+padding-top: 0.5cm;
+padding-left: 0.5cm;
+height: 160px;
+text-align: left;
+background-color: #f1f1f1;
+}
+
+#header h1 {
+color: #333;
+margin: 0;
+padding-top: 20px;
+padding-bottom: 5px;
+font-size: 45px;
+letter-spacing: 4px;
+}
+
+#header h2 {
+color: #333;
+margin: 0;
+padding-top: 10px;
+padding-bottom: 5px;
+font-size: 17px;
+letter-spacing: 2px;
+}
+
+#container {
+width: 1200px;
+}
+
+#aside {
+float: left;
+width: 200px;
+display: block;
+}
+
+#aside p {
+padding: 25px;
+padding-left: 10px;
+padding-top: 7px;
+padding-bottom: 7px;
+text-align: justify;
+line-height: 19px;
+font-size: 16px;
+color: #999;
+}
+
+#footer {
+clear: both;
+margin: 0;
+padding: 0;
+height: 50px;
+background-color: #fff;
+}
+
+#footer h3 {
+color: #fff;
+padding: 0;
+margin: 0;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 14px;
+letter-spacing: 2px;
+text-align: center;
+font-weight: normal;
+}
+
+#footer p {
+font-style: italic;
+font-size: 10px;
+padding: 0;
+margin: 0;
+text-align: center;
+}
+
+#section {
+float: left;
+width: 1200px;
+display: block;
+}
+
+.xxlargetText {
+font-size: 1.3em;
+}
+
+.issue {
+width: 450px;
+}
+.td {
+width: 100px;
+}
+
+.des {
+width: 70%;
+}
+
+#section #version {
+width: 1200px;
+margin: 0px auto;
+margin-top: 10px;
+margin-bottom: 10px;
+text-align: left;
+background-color: #fff;
+}
+
+#section #version #header {
+height: 10px;
+padding-top: 5px;
+padding-bottom: 15px;
+}
+
+#section #version #footer {
+clear: both;
+height: 20px;
+}
+
+#section #version #header h1 {
+color: #fff;
+margin: 0;
+padding-top: 10px;
+padding-bottom: 5px;
+font-size: 20px;
+letter-spacing: 4px;
+text-align: left;
+text-indent: 10px;
+}
+
+#version p {
+padding: 15px;
+padding-top: 7px;
+padding-bottom: 7px;
+text-align: justify;
+line-height: 19px;
+font-size: 14px;
+}
+
+#version #footer h3 {
+color: #fff;
+margin: 0;
+padding-top: 2px;
+padding-bottom: 2px;
+font-size: 14px;
+letter-spacing: 4px;
+text-align: right;
+font-weight: normal;
+font-style: italic;
+}
+
+@media screen and (max-width: 600px) {
+#wrapper, #container {
+width: 500px;
+}
+
+#aside, #section, #section #version {
+float: none;
+width: 100%;
+}
+
+#header {
+height: 90px;
+}
+
+#header h1 {
+font-size: 25px;
+padding-top: 10px;
+padding-bottom: 3px;
+}
+
+#header h2 {
+font-size: 13px;
+padding-top: 10px;
+padding-bottom: 3px;
+}
+
+#section #version #header {
+height: 20px;
+}
+
+#section #version #footer {
+height: 15px;
+}
+
+#section #version #header h1 {
+font-size: 12px;
+padding-top: 5px;
+padding-bottom: 2px;
+}
+
+#version #footer h3 {
+padding: 1px;
+font-size: 11px;
+}
+}
+
+
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<img src="http://www.synaptics.com/sites/all/themes/synaptics/logo.png" alt="Synaptics">
+<br />
+<br />
+Synaptics Driver Release Notes for HPConsumerPUWP
+<br><br>OS: 32-bit and 64-bit Windows 7, Windows 8, Windows 8.1 and Windows 10
+<br>
+Languages Supported:  English, Arabic, Portuguese (Brazil), Croatian, Czech, Danish, French, French Canadian, Finnish, Greek, German, Hungarian, Indonesian, Hebrew, Italian, Japanese, Korean, Spanish (Mexico), Dutch, Norwegian Bokmal, Polish, Portuguese, Romanian, Russian, Swedish, Slovakian, Spanish (Spain), Slovenian, Thai, Turkish, Traditional Chinese, and Simplified Chinese.
+</div>
+
+<div id="container">
+<div id="section">
+<br>
+<!--syna-insert-here-->
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.54
+
+  Date: 02-24-2020</strong></div><br><br>
+<table border="1" cellpadding="5">  
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-41147<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP cNB G1 new PNPID request for Intel - TGL  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-41188<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Cursor would be blocked about 1s when pressed F2/F3/F11 key then move cursor via TP.  </td>
+<td align="left" valign="top" class="issue">After typing, TP driver will suppress "pointing" feature. It is a feature, not a bug.  </td>
+<td align="left" valign="top" class="issue">By customer's request, change palm setting. 
+ After typing, TP driver will not suppress "pointing" feature.   </td>
+</tr>
+<tr>
+<td class="td">
+HDR-41202<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP Starcraft - Apply new PNPID.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID. </td>
+<td align="left" valign="top" class="issue">Apply new HWID.</td>
+</tr>
+<tr>
+<td class="td">
+HDR-41243<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Apply HWID for HP Baffin TGL.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID. </td>
+</tr>
+</tbody></table>
+<br> 
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.53
+
+Date: 01-15-2020</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-41099<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_cNB_Gamora_CML-H] SIO1809558 Cursor moved slowly when moved finger on TP  </td>
+<td align="left" valign="top" class="issue">Add new SMB HWID PCI\VEN_8086&DEV_06A3&CC_0C05.  </td>
+<td align="left" valign="top" class="issue">Add new SMB HWID PCI\VEN_8086&DEV_06A3&CC_0C05.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.52
+
+Date: 01-09-2020</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-41021<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request: SYNA32AC the same as SYNA328F  </td>
+<td align="left" valign="top" class="issue">  </td>
+<td align="left" valign="top" class="issue">  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-41078<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Andaman_TRL-U] New PnPID requested | v19.5.35.5X  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.51
+
+Date: 12-03-2019</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40987<font color="red">  &cross;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request: SYNA32A8/SYNA32AB the same as SYNA328F, SYNA32A9/SYNA32AA the same as SYNA32A4  </td>
+<td align="left" valign="top" class="issue">  </td>
+<td align="left" valign="top" class="issue">  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.50
+
+Date: 11-20-2019</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40942<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Per HP request, need study "Can user have an updated driver to perform legacy-DCH migration with user&#8217;s pre-setting reserved?"  </td>
+<td align="left" valign="top" class="issue">When TP driver is updated to new driver, new driver will remove user setting by default.  </td>
+<td align="left" valign="top" class="issue">When TP driver is updated to new driver, new driver will keep user setting by default.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40994<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">When TP driver is updated from legacy to DCHU driver, please check if user setting is not changed.  </td>
+<td align="left" valign="top" class="issue">When TP driver is updated to new driver, new driver will remove user setting by default.   </td>
+<td align="left" valign="top" class="issue">When TP driver is updated to new driver, new driver will keep user setting by default.   </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.49
+
+Date: 11-01-2019</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40905<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request: SYNA32A7 the same as SYNA3A4  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40942<font color="red">  &cross;</font>  </td>
+<td align="left" valign="top" class="issue">Per HP request, need study "Can user have an updated driver to perform legacy-DCH migration with user&#8217;s pre-setting reserved?"  </td>
+<td align="left" valign="top" class="issue">  </td>
+<td align="left" valign="top" class="issue">  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.48
+
+Date: 09-01-2019</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40711<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP cNB FY20 new PNPID request  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40775<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP cNB OMEN FY20 new PNPID request  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40800<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP request when WU from PUWP to PTP filter driver, APPx need be auto uninstall	  </td>
+<td align="left" valign="top" class="issue">For DCHU driver, Appx will not be uninstalled automatically. </td>
+<td align="left" valign="top" class="issue">Use Service to uninstall UWP Appx.  </td>
+</tr>
+</tbody></table>
+
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.47
+
+Date: 07-29-2019</strong></div><br><br>
+<tr>
+<td class="td">
+</td><tr>
+<td class="td">
+</td><table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40653<font color="red">  &cross;</font>  </td>
+<td align="left" valign="top" class="issue">syncom crash issues review  </td>
+<td align="left" valign="top" class="issue">  </td>
+<td align="left" valign="top" class="issue">  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39777<font color="green">  &checkmark;</font><br>(1658896)  </td>
+<td align="left" valign="top" class="issue">[HP][CMIT][2018][1658896] Observed BSOD 0x7f while run video stress OpenGL  </td>
+<td align="left" valign="top" class="issue">Recursive call of RedetectAllDevices causes stack overflow.  </td>
+<td align="left" valign="top" class="issue">Extend the timeout to 2 seconds. Remove recursive call and use thread function instead.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40069<font color="red">  &cross;</font>  </td>
+<td align="left" valign="top" class="issue">TP App gray out when resuming from S4  </td>
+<td align="left" valign="top" class="issue">SynTPEnh.exe crashes after S4.
+Centennial app will not get correct Touchpad state and UI will be grayed out.  </td>
+<td align="left" valign="top" class="issue">Remove SynTPHelper.exe in driver package for short term.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40541<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP superheros: perform 2 fnger scrolling, it become pinch/zoom  </td>
+<td align="left" valign="top" class="issue">For EDGE app, we use touchinjection to do 2F scrolling gestures.
+However, we find that 2F behavior will cause "zoon in" feature on RS5 version of EDGE app.
+This issue will not be reported on RS4 version or older of EDGE app.
+New version of EDGE app may not support touchinjection feature completely.   </td>
+<td align="left" valign="top" class="issue">For superhero device, disable 2F scrolling touch-injection feature on EDGE app.   </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40549<font color="red">  &cross;</font>  </td>
+<td align="left" valign="top" class="issue">The MSG "Unable to connect to..." pop up after resumed unit from MS then launched synaptics touchpad from apps lis  </td>
+<td align="left" valign="top" class="issue">  </td>
+<td align="left" valign="top" class="issue">  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40619<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">TP no function: when checked "Disable internal pointing..." with USB mouse connect then restart this unit, and unplug USB mouse  </td>
+<td align="left" valign="top" class="issue">Before TP driver save PnPID in CosForeignPDMonitor, PnP arrival event occurrs. External mouse will be detected to "Synaptics" device.
+Touchpad device will not be disabled even if TP device is connected with external mouse.   </td>
+<td align="left" valign="top" class="issue">PNP (External mouse) arrived before TP driver saves TP's HWID.
+TP driver will save unknown PNP (External mouse) first.
+After TP driver saves Touchpad HWID, it will check these unknown PNPID.   </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40629<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request: SYNA329C the same as SYNA3297   </td>
+<td align="left" valign="top" class="issue">Apply new PNPID.  </td>
+<td align="left" valign="top" class="issue">Apply new PNPID.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40659<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">KB backlight is no work in PNPID SYNA329A  </td>
+<td align="left" valign="top" class="issue">According to current FW design, PTP mode is Col03, not Col02. Touchpad vendor defined device  is Col02.  </td>
+<td align="left" valign="top" class="issue">For SYNA329A device, we need to change PTP filter driver from Col02 to Col03.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40706<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">When 3F tap trig search UI, then do 4F tap, action center UI can't be trigged  </td>
+<td align="left" valign="top" class="issue">When the foreground application is "search", we will use the second key sequence to do it. However, this feature is not defined in "4F tap" gestures.  </td>
+<td align="left" valign="top" class="issue">Support the second key sequence for "4F tap" gestures. According to different  foreground application, TP driver will send specific scan code.   </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40720<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP_DUA_TouchPad_19H1] perform 2 fnger Horizontal scrolling in Internet Explorer, it also trigger vertical scrolling   </td>
+<td align="left" valign="top" class="issue">Current  "Key code " can't support 2 finger Horizontal scrolling in Internet Explorer  and it only triggers 2F vertical scrolling.  </td>
+<td align="left" valign="top" class="issue">Change correct "key code" to support 2 finger Horizontal scrolling in Internet Explorer.  </td>
+</tr>
+</tbody></table>
+<br>
+Feature Added
+<table border="1" cellpadding="5" width="800px">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:90%" bordercolor=white>Description</th>
+</tr>
+<tr>
+<td>
+HDR-40648<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top">please add touch injection for pince/zoom function in Chrome browser and Twitter application for non PTP platform  </td>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.46
+
+Date: 06-10-2019</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40581<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">TP would auto enable when checked "Disable internal pointing..." with USB mouse connect then restart this unit  </td>
+<td align="left" valign="top" class="issue">Before TP driver save PnPID in CosForeignPDMonitor, PnP arrival event occurrs. External mouse will be detected to "Synaptics" device.
+Touchpad device will not be disabled even if TP device is connected with external mouse.  </td>
+<td align="left" valign="top" class="issue">PNP (External mouse) arrived before TP driver saves TP's HWID.
+TP driver will save unknown PNP (External mouse) first.
+After TP driver saves Touchpad HWID, it will check these unknown PNPID.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40619<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">TP no function: when checked "Disable internal pointing..." with USB mouse connect then restart this unit, and unplug USB mouse  </td>
+<td align="left" valign="top" class="issue">Before TP driver save PnPID in CosForeignPDMonitor, PnP arrival event occurrs. External mouse will be detected to "Synaptics" device.
+Touchpad device will not be disabled even if TP device is connected with external mouse.   </td>
+<td align="left" valign="top" class="issue">PNP (External mouse) arrived before TP driver saves TP's HWID.
+TP driver will save unknown PNP (External mouse) first.
+After TP driver saves Touchpad HWID, it will check these unknown PNPID.   </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.45
+
+Date: 06-09-2019</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40613<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumer_PUWP] Missing driver and "Unable to connect to the Synaptics Pointing Device Driver" error message pop up after upgrade driver from v19.5.35.41 to 19.5.35.44_HPConsumer_PUWP then perform Synaptics TouchPad.appx.  </td>
+<td align="left" valign="top" class="issue">For PS2/SMB device, Software component will be showed after next boot.
+When SynTPEnhservice is launched and Software component is not generated, SynTPEnhService will uninstall TP driver.  </td>
+<td align="left" valign="top" class="issue">For PS2/SMB device, Software component will be showed after next boot.
+SynTPEnhservice is launched after next boot.
+Software component is generated and SynTPEnhService will not uninstall TP driver.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.44
+
+Date: 06-05-2019</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40581<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">TP would auto enable when checked "Disable internal pointing..." with USB mouse connect then restart this unit  </td>
+<td align="left" valign="top" class="issue">Before TP driver save PnPID in CosForeignPDMonitor, PnP arrival event occurrs. External mouse will be detected to "Synaptics" device.
+Touchpad device will not be disabled even if TP device is connected with external mouse.  </td>
+<td align="left" valign="top" class="issue">PNP (External mouse) arrived before TP driver saves TP's HWID.
+TP driver will save unknown PNP (External mouse) first.
+After TP driver saves Touchpad HWID, it will check these unknown PNPID.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.43
+
+Date: 05-27-2019</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40549<font color="red">  &cross;</font>  </td>
+<td align="left" valign="top" class="issue">The MSG "Unable to connect to..." pop up after resumed unit from MS then launched synaptics touchpad from apps lis  </td>
+<td align="left" valign="top" class="issue">  </td>
+<td align="left" valign="top" class="issue">  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40567<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Apply new PNPID: SYNA329A SYNA329B  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.42
+
+Date: 05-22-2019</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40440<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP_Win10_RS5_WHLK] Failed Item: DF - Reinstall with IO Before and After (Reliability)  </td>
+<td align="left" valign="top" class="issue">For Windows 10 RS6, OEMx.inf  is removed after server is uninstalled, so server will not remove the setting of TP driver.
+</td>
+<td align="left" valign="top" class="issue">For HID device, we need to do "rescan for hardware change" after mouse device is un-installed. Hence, we move service to other INF to register service feature. We can avoid that Service stops before mouse device is uninstalled.
+
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-40457<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">MTP/UWP driver behavior of 3F tap sencod time doesn't match PTP in Win10 19H1  </td>
+<td align="left" valign="top" class="issue">For "3F tap" gestures, we only send "Windows key + S key".  </td>
+<td align="left" valign="top" class="issue">We send "Windows key + S key" when Windows search is not launched.
+We send "ESC key" when Windows search has been launched.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40511<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP superhero: TP still has function even checked "Disable internal pointing device when external USB pointing device is attached"  </td>
+<td align="left" valign="top" class="issue">The setting of UWPAppSupport is wrong and it causes the behavior of PUWP app fails.  </td>
+<td align="left" valign="top" class="issue">Correct the setting of UWPAppSupport to 0.
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-40516<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Add new SMBus DID into v19.5.35.29_HPConsumerPUWP, and new branch   </td>
+<td align="left" valign="top" class="issue">Add new SMBus ID.  </td>
+<td align="left" valign="top" class="issue">Add new SMBus ID.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40540<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Sometimes SynService.inf is not copied to DriverStore.  </td>
+<td align="left" valign="top" class="issue">SynService.inf is not removed, so SynService.inf( the same version) is not copied to driver store.
+SynTPEnhService is not launched.  </td>
+<td align="left" valign="top" class="issue">Before uninstalling SynTPEnhService.exe, we will force to uninstall SynService.inf.
+It makes that SynService.inf( the same version) is copied to driver store when user tries to install the same driver version.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40541<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP superheros: perform 2 fnger scrolling, it become pinch/zoom  </td>
+<td align="left" valign="top" class="issue">For EDGE app, we use touchinjection to do 2F scrolling gestures.
+However, we find that 2F behavior will cause "zoon in" feature on RS5 version of EDGE app.
+This issue will not be reported on RS4 version or older of EDGE app.
+New version of EDGE app may not support touchinjection feature completely.   </td>
+<td align="left" valign="top" class="issue">For superhero device, disable 2F scrolling touch-injection feature on EDGE app.   </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40550<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">please add below DID into driver, PCI\VEN_8086&DEV_34A3&CC_0C05  </td>
+<td align="left" valign="top" class="issue">Apply new SMB ID.  </td>
+<td align="left" valign="top" class="issue">Apply new SMB ID.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.41
+
+Date: 05-02-2019</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40511<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP superhero: TP still has function even checked "Disable internal pointing device when external USB pointing device is attached"?  </td>
+<td align="left" valign="top" class="issue">The setting of UWPAppSupport is wrong and it causes the behavior of PUWP app fails. </td>
+<td align="left" valign="top" class="issue">Correct the setting of UWPAppSupport to 0. </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40393<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Quanta will get the SynTPenh.exe error easily in Windows 10 19H1 , please help to check APP log.evtx.  </td>
+<td align="left" valign="top" class="issue">For PUWP SynCOM, it is registered by SynTPENHService.
+SynAPI can't be created when SynCOM is not registered.
+SynTPEnh.exe will not be launched successfully. </td>
+<td align="left" valign="top" class="issue">Make sure that SynAPI is created after Syncom is registered.
+SynTPEnh.exe can be launched by SynTPEnhService.exe.
+When SynTPEnh,exe can be launched normally, app can be launched normally and app will not show "error" message.
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-40466<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumer_Win10] Two finger scrolling and zoom gestures are unworkable by IE browser.  </td>
+<td align="left" valign="top" class="issue">Touch-injection feature fails in SynHelper.exe. </td>
+<td align="left" valign="top" class="issue">Use SynTPEnh.exe to do touch-injection feature.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40457<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">MTP/UWP driver behavior of 3F tap sencod time doesn't match PTP in Win10 19H1.  </td>
+<td align="left" valign="top" class="issue">For "3F tap" gestures, we only send "Windows key + S key". </td>
+<td align="left" valign="top" class="issue">We send "Windows key + S key" when Windows search is not launched. We send "ESC key" when Windows search has been launched.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40432<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PTP filter driver curtain zone validation.  </td>
+<td align="left" valign="top" class="issue">The size of every device is different, so current setting can't meet HP's request.  </td>
+<td align="left" valign="top" class="issue">The size of every device is different, so we need to modify the curtain setting.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40451<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumer_Win10] 3F & 4F tap have no functions with Windows 10 19H1 build 18362 OS.  </td>
+<td align="left" valign="top" class="issue">When Win1019H1 is added into OS setting, other driver(SynTPEnh.exe and SynTP.sys) will be affected.  </td>
+<td align="left" valign="top" class="issue">Win1019H1 is only added into OS setting in SynTPCPL.dll. For other driver, Win1019H1 uses the same setting as Win10. Avoid that other gestures is affected.  </td>
+</tr>
+<tr>
+</tbody></table>
+<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.29
+
+Date: 04-16-2019</strong></div><br><br>
+<tr>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40451<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">3F & 4F tap have no functions with Windows 10 19H1 build 18362 OS.  </td>
+<td align="left" valign="top" class="issue">When Win1019H1 is added into OS setting, other driver will read wrong registry setting.  </td>
+<td align="left" valign="top" class="issue">Win1019H1 is only added into OS setting in SynTPCPL.dll. For other driver, Win1019H1 uses the same setting as Win10.   </td>
+</tr>
+</tbody></table>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.28
+
+Date: 04-14-2019</strong></div><br><br>
+<tr>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40429<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Please remove the wording on mentioning Cortana in their app side since hotkey we use is Win Key + S = Open Search and not Cortana in 19H1 OS.  </td>
+<td align="left" valign="top" class="issue">Cortana is not used by default in win10 19h1.  </td>
+<td align="left" valign="top" class="issue">Remove the wording on mentioning Cortana in Win10 19h1.   </td>
+</tr>
+<td class="td">
+HDR-40429<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP_Win10_RS5_WHLK] Failed Item: DF - Reinstall with IO Before and After (Reliability)  </td>
+<td align="left" valign="top" class="issue">For Windows 10 RS6, OEMx.inf is removed after server is uninstalled, so server will not remove the setting of TP driver. </td>
+<td align="left" valign="top" class="issue">For HID device, we need to do "rescan for hardware change" after mouse device is un-installed. Hence, we move service to other INF to register service feature. We can avoid that Service stops before mouse device is uninstalled.    </td>
+</tr>
+</tbody></table>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.27
+
+Date: 03-27-2019</strong></div><br><br>
+<tr>
+<td class="td">
+</td><tr>
+<td class="td">
+</td><tr>
+<td class="td">
+</td><div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.26
+
+Date: 03-14-2019</strong></div><br><br>
+<tr>
+<td class="td">
+</td><tr>
+<td class="td">
+</td><tr>
+<td class="td">
+</td><tr>
+<td class="td">
+</td><div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.25
+
+Date: 03-03-2019</strong></div><br><br>
+<tr>
+<td class="td">
+</td><tr>
+<td class="td">
+</td><div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.24
+
+Date: 01-24-2019</strong></div><br><br>
+<tr>
+<td class="td">
+</td><tr>
+<td class="td">
+</td><div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.23
+
+Date: 01-08-2019</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39715<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] After fully shutdown then reboot system, touch TP sometimes will cause system BSOD  </td>
+<td align="left" valign="top" class="issue">Because memory space of SynTP.sys is not released after I2C HID device is enumerated, some BSOD issues happens.  </td>
+<td align="left" valign="top" class="issue">We will remove SynTP device and SynRMIHID device together.
+Hence, we can make sure that memory space of SynTP.sys is released.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40169<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Cursor will shift to left-buttom corner when slide on TP  </td>
+<td align="left" valign="top" class="issue">Because predicted coordinates(in "position filtering" feature) is not correct, cursor will shift to left-buttom corner.  </td>
+<td align="left" valign="top" class="issue">Modify Touch buffer size to improve that cursor will shift to left-buttom corner after enabling "position filtering" feature.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-40208<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request: SYNA3295 SYNA3296 in PTP filter driver  </td>
+<td align="left" valign="top" class="issue">Apply new HWID for PTP filter driver.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID for PTP filter driver.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.22
+
+Date: 12-20-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39947<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">MS report "Touchpad input is not well tuned, diagonal inputs do not track smoothly"  </td>
+<td align="left" valign="top" class="issue">The linearity of touchpad is not enough good for MSFT even.
+Even if we can pass WHCK test item, we still need to improve the linearity of Touchpad.  </td>
+<td align="left" valign="top" class="issue">Enable "position filter" feature to improve the linearity of Touchpad device.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.21
+
+Date: 12-04-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-40069<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">TP App gray out when resuming from S4  </td>
+<td align="left" valign="top" class="issue">SynTPEnh.exe crashes after S4.
+Centennial app will not get correct Touchpad state and UI will be grayed out.  </td>
+<td align="left" valign="top" class="issue">Remove SynTPHelper.exe in driver package for short term.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.20
+
+Date: 11-29-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39776<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">"Synaptics Touchpad" could not be launched from apps list.  </td>
+<td align="left" valign="top" class="issue">If Centennial app is not closed before system enter into S3/S4, Centennial app will be launched automatically.
+When SynTPENH.exe is launched slowly, Centennial app will not be launched and show error message.  </td>
+<td align="left" valign="top" class="issue">Add "re-try" method and make sure that Centennial app is launched after SynTPEN.exe is ready.
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-40069<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">TP App gray out when resuming from S4  </td>
+<td align="left" valign="top" class="issue">SynTPEnh.exe crashes after S4.
+Centennial app will not get correct Touchpad state and UI will be grayed out.  </td>
+<td align="left" valign="top" class="issue">Remove SynTPHelper.exe in driver package for short term.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.19
+
+Date: 11-19-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39743<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">when cursor move to 2 finger scrolling setting icon, find setting value UI would flicker    </td>
+<td align="left" valign="top" class="issue">Tool-tip text will flicker on the device with high DIP display because some API can't support on Centennial app.  </td>
+<td align="left" valign="top" class="issue">Remove some tool tip text and avoid that UI flickers.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39947<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">MS report "Touchpad input is not well tuned, diagonal inputs do not track smoothly"  </td>
+<td align="left" valign="top" class="issue">The linearity of touchpad is not enough good for MSFT even.
+Even if we can pass WHCK test item, we still need to improve the linearity of Touchpad.  </td>
+<td align="left" valign="top" class="issue">Enable "position filter" feature to improve the linearity of Touchpad device.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.18
+
+Date: 10-29-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39801<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP/Potter1.1] Primary button can't keep the change when change the primary button from lift to right. | v19.5.35.11 | HPConsumer  </td>
+<td align="left" valign="top" class="issue">For MSFT mouse setting, Touchpad driver will check the state every 1 second.
+For MSFT mouse UI, change Primary button setting and save this issue very quickly. Sometime, we will miss this change and use wrong Primary button setting.  </td>
+<td align="left" valign="top" class="issue">Register a registry monitor function.
+When MSFT mouse setting is changed, TP driver will get the latest Primary button setting.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39957<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Consumer] Enable the touchInjection when scrolling in the IE/Edge | v19.5.35.15 | HPConsumerPUWP  </td>
+<td align="left" valign="top" class="issue">By customer's request, enable touch-injection feature for 2F scrolling gestures.  </td>
+<td align="left" valign="top" class="issue">Enable touch-injection feature in IE/Edge.
+</td>
+</tr>
+</tbody></table>
+<br>
+Feature Added
+<table border="1" cellpadding="5" width="800px">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:90%" bordercolor=white>Description</th>
+</tr>
+<tr>
+<td>
+HDR-39894<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top">new feature for HP cNB filter driver  </td>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.17
+
+Date: 10-22-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39877<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumer_PUWP] Synaptics Touchpad appx settings will unworkable when user do force shut down in power on process then cold boot to OS.   </td>
+<td align="left" valign="top" class="issue">TP app is launched before SynTPEnh is launched by Server.
+Hence, TP App can't be connected with SynTPEnh and fail to initialize TP app.  </td>
+<td align="left" valign="top" class="issue">Avoid to initialize touch app before SynTPEnh is launched.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.16
+
+Date: 10-21-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39877<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumer_PUWP] Synaptics Touchpad appx settings will unworkable when user do force shut down in power on process then cold boot to OS.   </td>
+<td align="left" valign="top" class="issue">TP app is launched before SynTPEnh is launched by Server.
+Hence, TP App can't be connected with SynTPEnh and fail to initialize TP app.  </td>
+<td align="left" valign="top" class="issue">Avoid to initialize touch app before SynTPEnh is launched.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39930<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">BSOD "7e" blue screen occurred during resumed system from S4  </td>
+<td align="left" valign="top" class="issue">Thread function is not cancelled after the device is removed.  </td>
+<td align="left" valign="top" class="issue">Add sanity check for BSOD 0x7E.
+If the pointing device doesn't exist, cancel current thread function.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39931<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">when display off, can't wake up system via touchpad  </td>
+<td align="left" valign="top" class="issue">When the display is turned off, we change FW mode from normal operation to sensor sleep.  </td>
+<td align="left" valign="top" class="issue">After the display is turned off, keep FW mode to normal operation.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39933<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] appx launch Error message is not correct for appx not supported driver  </td>
+<td align="left" valign="top" class="issue">For PTP filter driver, we don't support UI app.
+However, user still can install UI app.  </td>
+<td align="left" valign="top" class="issue">For PTP filter driver, we have no UI feature, so we should show warning message that UI app can't be installed on this device.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39942<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP Superheros: Synaptics HID Device is disabled after resume S4   </td>
+<td align="left" valign="top" class="issue">Before I2C HID device is enabled, the system is shutdown.
+Hence, I2C HID device is not enabled successfully.  </td>
+<td align="left" valign="top" class="issue">Make sure that I2C HID device and Synaptics HID Device are enabled.
+If they are disabled, TP driver will try to enable them.  </td>
+</tr>
+</tbody></table>
+<br>
+Feature Added
+<table border="1" cellpadding="5" width="800px">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:90%" bordercolor=white>Description</th>
+</tr>
+<tr>
+<td>
+HDR-39922<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top">For PTP filter driver: please modify the driver naming in device manager as &#8220;Synaptics PrecisionTouchpad Filter Driver&#8221;  </td>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.15
+
+Date: 10-10-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39885<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request: SYNA3291 to SYNA3295  </td>
+<td align="left" valign="top" class="issue">Apply new HWID for PTP filter driver.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID for PTP filter driver.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.14
+
+Date: 10-01-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.13
+
+Date: 09-18-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39747<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">TP lose function, no YB on the device manager, but TP could be workable after disable/enable the TP device from device manager   </td>
+<td align="left" valign="top" class="issue">When we enumerate TP device in earlier stage, we will fail to enumerate TP device and causes TP lose function.  </td>
+<td align="left" valign="top" class="issue">It is a temporality issue. Hence, we will enumerate TP device after SynTPEnh service is lauched.   </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39790<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Add PNPID,SYNA3290, into v19.5.35.12_HPConsumerPUWP  </td>
+<td align="left" valign="top" class="issue">Apply new HWID SYNA3290.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID SYNA3290.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39801<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP/Potter1.1] Primary button can't keep the change when change the primary button from lift to right. | v19.5.35.11 | HPConsumer  </td>
+<td align="left" valign="top" class="issue">For MSFT mouse setting, Touchpad driver will check the state every 1 second.
+For MSFT mouse UI, change Primary button setting and save this issue very quickly. Sometime, we will miss this change and use wrong Primary button setting.  </td>
+<td align="left" valign="top" class="issue">Register a registry monitor function.
+When MSFT mouse setting is changed, TP driver will get the latest Primary button setting.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.12
+
+Date: 09-09-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39747<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">TP lose function, no YB on the device manager, but TP could be workable after disable/enable the TP device from device manager   </td>
+<td align="left" valign="top" class="issue">When we enumerate TP device in earlier stage, we will fail to enumerate TP device and causes TP lose function.  </td>
+<td align="left" valign="top" class="issue">It is a temporality issue. Hence, we will enumerate TP device after SynTPEnh service is lauched.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.11
+
+Date: 09-04-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39679<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request: SYNA328B to SYNA328F  </td>
+<td align="left" valign="top" class="issue">By customer's request, add new HWID.  </td>
+<td align="left" valign="top" class="issue">Apply new HWID SYNA328B, SYNA328C, SYNA328D,  SYNA328E, SYNA328F.   </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39688<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP/Potter1.1] Primary button function failed | v19.5.35.5 | HPConsumer  </td>
+<td align="left" valign="top" class="issue">When system mouse button switches, Synaptics Touchpad Driver will only updates button action but not reload and save the action, because the button actions for Touchpad is updated and saved in Synaptics Touchpad UI, which is independent from system mouse button configuration page  </td>
+<td align="left" valign="top" class="issue">Do not update button action when system mouse button action switched; i.e., button actions for TouchPad is controlled by Synaptics TouchPad UI, not affected by system mouse button switches.   </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39713<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] Uninstalled driver from Device Manager, TouchPad can't move sensor  </td>
+<td align="left" valign="top" class="issue">After uninstalling pointing device and PTP filter driver, touchpad will have no function if we don't do "scan for hardware change".  </td>
+<td align="left" valign="top" class="issue">After uninstalling TP driver, scan for hardware change again.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.10
+
+Date: 09-02-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39617<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Godzilla] Two fingers scrolling malfunction at task view menu | v19.5.35.7 | HPComsumerPUWP  </td>
+<td align="left" valign="top" class="issue">For UWP driver, windows API IsImmersiveProcess() we used to decide is immersive since win8.1 still works, but it fails DCHU test, so we can't use "IsImmersiveProcess" API to indetify if the foreground window is  an immersive window.  </td>
+<td align="left" valign="top" class="issue">Add "Task View" window into whitelist.
+TP driver will indetify "Task View" window with an immersive window.
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-39668<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP Superheros: put finger on TP, then doing LID close go into MS, find system will be wake up by TP  </td>
+<td align="left" valign="top" class="issue">TP driver enters into D3 stage due to closing lid.
+If TP driver sends dribble packet at this stage, TP driver also enters D0 stage and external monitor will be turned on.  </td>
+<td align="left" valign="top" class="issue">We will filter dribble packet when closing lid to sleep/suspend.
+It will avoid that TP driver also enters D0 stage and external monitor will be turned on.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39694<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP/Drax] filter driver request | SYNA3289  </td>
+<td align="left" valign="top" class="issue">By customer's request, we need to implement PTP filter driver to control LED light.  </td>
+<td align="left" valign="top" class="issue">Apply PTP filter driver to control the keyboard back light.
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-39713<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] Uninstalled driver from Device Manager, TouchPad can't move sensor  </td>
+<td align="left" valign="top" class="issue">After uninstalling pointing device and PTP filter driver, touchpad will have no function if we don't do "scan for hardware change".  </td>
+<td align="left" valign="top" class="issue">After uninstalling TP driver, scan for hardware change again.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39715<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] After fully shutdown then reboot system, touch TP sometimes will cause system BSOD  </td>
+<td align="left" valign="top" class="issue">Because memory space of SynTP.sys is not released after I2C HID device is enumerated, some BSOD issues happens.  </td>
+<td align="left" valign="top" class="issue">We will remove SynTP device and SynRMIHID device together.
+Hence, we can make sure that memory space of SynTP.sys is released.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.9
+
+Date: 08-26-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39617<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Godzilla] Two fingers scrolling malfunction at task view menu | v19.5.35.7 | HPComsumerPUWP  </td>
+<td align="left" valign="top" class="issue">For UWP driver, windows API IsImmersiveProcess() we used to decide is immersive since win8.1 still works, but it fails DCHU test, so we can't use "IsImmersiveProcess" API to indetify if the foreground window is  an immersive window.  </td>
+<td align="left" valign="top" class="issue">Add "Task View" window into whitelist.
+TP driver will indetify "Task View" window with an immersive window.
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-39654<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP Superheros: remove PTP setting in descriptor  </td>
+<td align="left" valign="top" class="issue">FW still reports PTP descriptor even if TP driver changes mode from PTP to MTP mode.  </td>
+<td align="left" valign="top" class="issue">TP driver uses vendor command to remove PTP descriptor.
+FW will not report PTP descriptor after HID device is enumerated again  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.8
+
+Date: 08-20-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39107<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] Two physical buttons still work even if touchpad has been disabled  </td>
+<td align="left" valign="top" class="issue">The button is not disabled after touchpad device is disabled.  </td>
+<td align="left" valign="top" class="issue">After touchpad device is disabled by end user, button will be disabled automatically.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39616<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Godzilla] 2 fingers scrolling | delay 1S | v19.5.35.7 | HPComsumerPUWP  </td>
+<td align="left" valign="top" class="issue">We need some time to detect if this finger is resting finger.
+The default value is 1 second.
+It will affect user experience.  </td>
+<td align="left" valign="top" class="issue">Reduce the threshold value of resting finger to improve the delay time.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39617<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Godzilla] Two fingers scrolling malfunction at task view menu | v19.5.35.7 | HPComsumerPUWP  </td>
+<td align="left" valign="top" class="issue">For UWP driver, windows API IsImmersiveProcess() we used to decide is immersive since win8.1 still works, but it fails DCHU test, so we can't use "IsImmersiveProcess" API to indetify if the foreground window is  an immersive window.  </td>
+<td align="left" valign="top" class="issue">Add "Task View" window into whitelist.
+TP driver will indetify "Task View" window with an immersive window.
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-39636<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Godzilla] Synaptics Touchpad APP UI is not aligned in the center | v19.5.35.6 _ HPConsumerPUWP  </td>
+<td align="left" valign="top" class="issue">By customer's request, Touchpad UI should be aligned in the center.  </td>
+<td align="left" valign="top" class="issue">Change the UI layout and meet customer's request.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.7
+
+Date: 08-01-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39266<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Godzilla] three-finger swipe up and down | v19.0.5.74 | HPConsumer_PUWP  </td>
+<td align="left" valign="top" class="issue">For "3F swipe up" gesture, end user needs to minimize latency and get better performance.  </td>
+<td align="left" valign="top" class="issue">By customer's feedback, change the threshold of "3F swipe up" gesture and improve the user experience.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39326<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">It is hard to use Tap to close window, please help check log and video  </td>
+<td align="left" valign="top" class="issue">Non-Finger object was updated to Palm when finger packet count is less than 5.  </td>
+<td align="left" valign="top" class="issue">Adjust the finger history minimum threshold.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39556<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Godzilla] 2 fingers scrolling config change | v19.5.35.6 | HPConsumer_PUWP  </td>
+<td align="left" valign="top" class="issue">Customer request.  </td>
+<td align="left" valign="top" class="issue">Two fingers moving in button zone are not resting fingers. Enable 2 finger scrolling after one finger moving and one finger in button zone.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.6
+
+Date: 07-30-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39417<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Godzilla] cursor frozen when pointing by finger | v19.5.35.3 | HPConsumer_PUWP  </td>
+<td align="left" valign="top" class="issue">For HDR-39314, we enable 2F scrolling gestures in button zone.
+We need to suppress the cursor to check if it is scrolling gestures.   </td>
+<td align="left" valign="top" class="issue">Disable 2F scrolling gestures in button zone.  </td>
+</tr>
+</tbody></table>
+<br>
+Feature Added
+<table border="1" cellpadding="5" width="800px">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:90%" bordercolor=white>Description</th>
+</tr>
+<tr>
+<td>
+HDR-38981<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top">HP will implement Keyboard backlight control feature via TP driver  </td>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.5
+
+Date: 07-23-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.4
+
+Date: 07-18-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39265<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Godzilla] Touch Injection enable | v19.0.10.74 | HPConsumer_PUWP  </td>
+<td align="left" valign="top" class="issue">Touch-injection is not enabled, so the performance of "pinch/zoom" gestures is not good.  </td>
+<td align="left" valign="top" class="issue">Enable touch-injection for HPconsumer projects.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.3
+
+Date: 07-08-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39098<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] Scrolling without coasting in Weather app sometimes will trigger tapping out side the app window  </td>
+<td align="left" valign="top" class="issue">"Inertia" feature can't be disabled for touch-injection feature.  </td>
+<td align="left" valign="top" class="issue">Support  to disable "Inertia" feature for touch-injection feature.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39105<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] App doesn't meet customer requirement  </td>
+<td align="left" valign="top" class="issue">Current setting is not wrong and doesn't meet customer requirement.  </td>
+<td align="left" valign="top" class="issue">1. Correct App name.
+2. Remove "help" setting in  Smart Sense/2F tap/3F tap/4F tap item.
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-39167<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] Can't trigger tapping on TouchPad top left side until we check then uncheck "TouchPad Disable Zone Settings"  </td>
+<td align="left" valign="top" class="issue">The action setting of "TouchPad left top side" is wrong.
+It will not report "tap" feature even if we use finger to tap TouchPad left top side.  </td>
+<td align="left" valign="top" class="issue">Correct the action setting of "TouchPad left top side".
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-39193<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Still can see "Synaptics ClickPad" exists in "Hardware and Sound" and able to launch.  </td>
+<td align="left" valign="top" class="issue">The registry keys for Windows control panel entries are not removed after uninstall.   </td>
+<td align="left" valign="top" class="issue">Remove uninstall keys and registry keys for Windows control panel entries   </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39212<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] Pinch zoom with slow speed can't be triggered in Photos  </td>
+<td align="left" valign="top" class="issue">We don't enable touchinjection feature on photo app.  </td>
+<td align="left" valign="top" class="issue">Enable touch-injection feature on photo app for "pinch" feature.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39314<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP Consumer:if I start scroll down gesture with both fingers in the button zone, there is a delay where the cursor is moving  </td>
+<td align="left" valign="top" class="issue">Customer request.  </td>
+<td align="left" valign="top" class="issue">Two fingers moving in button zone are not resting fingers. Enable 2 finger scrolling after one finger moving and one finger in button zone.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39319<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request: SYN3289 SYN328A  </td>
+<td align="left" valign="top" class="issue">Apply new HWID.  </td>
+<td align="left" valign="top" class="issue">Add SYN3289 and SYN328A into codebase.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39329<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Godzilla] Change the button zone area as Saffron setting | v19.5.34.2 | HP_ConsumerPUWP  </td>
+<td align="left" valign="top" class="issue">Button zone is not correct for HP design.  </td>
+<td align="left" valign="top" class="issue">Change the button zone area and meet HP spec.
+&#61762;  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.2
+
+Date: 06-20-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39105<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] App doesn't meet customer requirement  </td>
+<td align="left" valign="top" class="issue">Current setting is not wrong and doesn't meet customer requirement.  </td>
+<td align="left" valign="top" class="issue">1. Correct App name.
+2. Remove "help" setting in  Smart Sense/2F tap/3F tap/4F tap item.
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-39189<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP Superheros: S3 resume, and find lose function  </td>
+<td align="left" valign="top" class="issue">While entering/leaving connected standby, user mode service will be notified and try to write sleep mode in kernel driver. During resumed, SynTP driver could failed to read/write RMI data by sending IO control to SynRMIHID driver.  </td>
+<td align="left" valign="top" class="issue">Disable connected standby support in user mode service.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39192<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">The help is empty in APP  </td>
+<td align="left" valign="top" class="issue">Help controls should be hidden.  </td>
+<td align="left" valign="top" class="issue">Hide help controls for PUWP  </td>
+</tr>
+</tbody></table>
+<br>
+Feature Added
+<table border="1" cellpadding="5" width="800px">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:90%" bordercolor=white>Description</th>
+</tr>
+<tr>
+<td>
+HDR-38981<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top">HP will implement Keyboard backlight control feature via TP driver  </td>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35.1
+
+Date: 06-12-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39164<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">HP Superheros UI is not workable  </td>
+<td align="left" valign="top" class="issue">Update top level collection since this is PTP.  </td>
+<td align="left" valign="top" class="issue">Update collection information for SYN327E and SYN327F.
+</td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.35
+
+Date: 06-08-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39103<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] SynTP_00 is shown under "Other devices"  </td>
+<td align="left" valign="top" class="issue">SynTP_00 is under "Other devices". It should not be in "other device" group.  </td>
+<td align="left" valign="top" class="issue">Do not create raw pdo device node for puwp driver.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39105<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] App doesn't meet customer requirement  </td>
+<td align="left" valign="top" class="issue">Current setting is not wrong and doesn't meet customer requirement.  </td>
+<td align="left" valign="top" class="issue">1. Correct App name.
+2. Remove "help" setting in  Smart Sense/2F tap/3F tap/4F tap item.
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-39108<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] Driver is not Universal  </td>
+<td align="left" valign="top" class="issue">Some API is not a supported universal API. If TP driver calls the API directly it will not be a universal driver.  </td>
+<td align="left" valign="top" class="issue">Remove SynTPCPL in HPConsumer  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.34
+
+Date: 06-04-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-39076<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumer_Win10_RS4] The mouse primary button setting can't change the touchpad function from setting  </td>
+<td align="left" valign="top" class="issue"> The button swap state of touchpad is independent of the button swap setting for system mouse.   </td>
+<td align="left" valign="top" class="issue">Sync TP button's swap state with system mouse button setting and using system button page in mouse properties.   </td>
+</tr>
+<tr>
+<td class="td">
+HDR-39091<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_Drax] New PnPID | TM-03485-001 | Normal TP |  65x63 | HPConsumerPUWP  </td>
+<td align="left" valign="top" class="issue">Apply New HWID SYN3289.  </td>
+<td align="left" valign="top" class="issue">Apply New HWID SYN3289.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.33
+
+Date: 05-25-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-38965<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request in HPConsumerPUWP driver  </td>
+<td align="left" valign="top" class="issue">Customer request.  </td>
+<td align="left" valign="top" class="issue">Add PNPIDs for HPConsumerPUWP  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-38973<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Change PNPID from SYN327E/SYN327F to SYNA327E/SYNA327F  </td>
+<td align="left" valign="top" class="issue">Customer request  </td>
+<td align="left" valign="top" class="issue">Update PNPIDs  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.32
+
+Date: 05-18-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-38870<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumer] 1F and 2F Horizontal Scroll fail to work in weather application  </td>
+<td align="left" valign="top" class="issue">SQA request  </td>
+<td align="left" valign="top" class="issue">Add touch injection support for the Weather app.
+</td>
+</tr>
+<tr>
+<td class="td">
+HDR-38965<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request in HPConsumerPUWP driver  </td>
+<td align="left" valign="top" class="issue">Customer request.  </td>
+<td align="left" valign="top" class="issue">Add PNPIDs for HPConsumerPUWP  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.31
+
+Date: 05-11-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.30
+
+Date: 05-06-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.29
+
+Date: 04-27-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.28
+
+Date: 04-20-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.27
+
+Date: 04-13-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.26
+
+Date: 04-06-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-38643<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request: SYN327E, SYN327F in HPConsumer and HPConsumerPUWP  </td>
+<td align="left" valign="top" class="issue">Customer request  </td>
+<td align="left" valign="top" class="issue">Add PNPIDs SYN327E and SYN327F in HPConsumer and HPConsumerPUWP inc files.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.25
+
+Date: 03-30-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-38513<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Cassini MLK - 3F swipe gestures is too sensitive.  </td>
+<td align="left" valign="top" class="issue">The center of 3F swipe gestures is wrong after finger count is changed from 3 to 2. TP driver will detect a movement amount and do 3F swipe gestures wrong.  </td>
+<td align="left" valign="top" class="issue">The center of 3F swipe gestures must be re-calculated after finger count is changed from 3 to 2.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.24
+
+Date: 03-23-2018</strong></div><br><br>
+Feature Added
+<table border="1" cellpadding="5" width="800px">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:90%" bordercolor=white>Description</th>
+</tr>
+<tr>
+<td>
+HDR-38525<font color="red">  &cross;</font>  </td>
+<td align="left" valign="top">HSA and Driver suite evaluation need support - Synaptics TP  </td>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.23
+
+Date: 03-15-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.22
+
+Date: 03-09-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.21
+
+Date: 03-02-2018</strong></div><br><br>
+Feature Added
+<table border="1" cellpadding="5" width="800px">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:90%" bordercolor=white>Description</th>
+</tr>
+<tr>
+<td>
+HDR-38467<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top">Convert dpinst return value as either failure or success  </td>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.20
+
+Date: 02-23-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.19
+
+Date: 02-15-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-38141<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP_OPP_2018_Harry_potter] BSOD 0x9F | v19.5.10.0 | HPConsumerPUWP.Inf  </td>
+<td align="left" valign="top" class="issue">synchronous reqeust should have timeout   </td>
+<td align="left" valign="top" class="issue">synchronous reqeust should have timeout   </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.18
+
+Date: 02-09-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.17
+
+Date: 02-02-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.16
+
+Date: 01-27-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-38353<font color="red">  &cross;</font>  </td>
+<td align="left" valign="top" class="issue">Update copyright to 2018  </td>
+<td align="left" valign="top" class="issue">  </td>
+<td align="left" valign="top" class="issue">  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.15
+
+Date: 01-19-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.14
+
+Date: 01-12-2018</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.13
+
+Date: 01-07-2018</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-37997<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Secure SynTPAPI (plugin API) shared memory  </td>
+<td align="left" valign="top" class="issue">The SYNTPAPI library created shared memory with default security descriptor which is not secure.  </td>
+<td align="left" valign="top" class="issue">Changed the library to set shared memory security descriptor to deny unauthorized access.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-38088<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">v19.5.10.x: When UI is not installed, click tray icon, show mouse property page.  </td>
+<td align="left" valign="top" class="issue">Not check if Appx has been installed  </td>
+<td align="left" valign="top" class="issue">Check if Appx has been installed before opening UI  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-38094<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Uninstall PUWP driver will not remove user settings  </td>
+<td align="left" valign="top" class="issue">SynTPEnhService cannot remove current user settings directly  </td>
+<td align="left" valign="top" class="issue">SynTPEnhService will call SynTPEnh to delete user settings regs and shortcuts if existed when uninstall and remove software for PUPW drivers  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.12
+
+Date: 12-08-2017</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.11
+
+Date: 12-01-2017</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.10
+
+Date: 11-22-2017</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-37833<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request: SYN327D in HPConsumer and HPConsumerPUWP  </td>
+<td align="left" valign="top" class="issue">Customer request.  </td>
+<td align="left" valign="top" class="issue">Add PNPID SYN327D.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37836<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP][CMIT][2017] Issues for installed the driver with update  </td>
+<td align="left" valign="top" class="issue">SynTPEnhService only monitor main mouse class driver synpd oem inf for uninstallation the whole drivers  </td>
+<td align="left" valign="top" class="issue">SynTPEnhService now also monitor Syn auxiliary drivers under HiD class for uninstallation the whole drivers  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.9
+
+Date: 11-17-2017</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-37779<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP][CMIT][2017] Tap function is insensitive in BIOS  </td>
+<td align="left" valign="top" class="issue">WMode bit is not set to zero when changing more from absolute to relative mode.  </td>
+<td align="left" valign="top" class="issue">Set WMode bit to zero when the mode is switched to relative mode from absolute mode.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37779<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HP][CMIT][2017] Tap function is insensitive in BIOS  </td>
+<td align="left" valign="top" class="issue">WMode bit is not set to zero when changing more from absolute to relative mode.  </td>
+<td align="left" valign="top" class="issue">Set WMode bit to zero when the mode is switched to relative mode from absolute mode.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.8
+
+Date: 11-10-2017</strong></div><br><br>
+<br> System enhancements<br>
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.7
+
+Date: 11-03-2017</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-37664<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">New PnP ID: SYN327B for 2018 OPP 15" AMD for RS3   </td>
+<td align="left" valign="top" class="issue">Customer request  </td>
+<td align="left" valign="top" class="issue">Add PNPID SYN327B.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37673<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">New PnP ID: SYN327C for 2018 Consumer  for RS3   </td>
+<td align="left" valign="top" class="issue">Customer request  </td>
+<td align="left" valign="top" class="issue">Add PNPID SYN327C.  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.6
+
+Date: 10-30-2017</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-35652<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">Copyright year does not upgrade to 2017  </td>
+<td align="left" valign="top" class="issue">New year 2017  </td>
+<td align="left" valign="top" class="issue">Update copyright to year 2017  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-36798<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">SynaTPenhance still in Task manager/service  </td>
+<td align="left" valign="top" class="issue">Service process is killed before service process finishes remove.  </td>
+<td align="left" valign="top" class="issue">Removed killing service process code because the process is killed automatically when service is removed.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37052<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">please remove debug registry in v19.3.31.13_HPConsumer, v19.3.31.x branch  and trunk  </td>
+<td align="left" valign="top" class="issue">Customer request  </td>
+<td align="left" valign="top" class="issue">Remove key stroke log.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37471<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP_Win10 S] The speed of 1F & 2F edge motion scroll up is faster then scroll down in MS IE Browser  </td>
+<td align="left" valign="top" class="issue">MS IE, MS Metro IE, and MS Edge have different handling for positive and negative scrolling direction, even with the same amount of scrolling. In general, negative direction scrolling about half distance comparing to positive direction.  </td>
+<td align="left" valign="top" class="issue">Increase speed for negative scrolling direction.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37519<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] After click Right/Left Button , TouchPad will lost Function  </td>
+<td align="left" valign="top" class="issue">Syn3279 should be ClickPad.  </td>
+<td align="left" valign="top" class="issue">Update PNPID settings to ClickPad.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37626<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">BSOD 0x7E found with v19.5.5 HPConsumer.inf while performing Windows Driver Verifier  </td>
+<td align="left" valign="top" class="issue">We should not initialize WDF file callbacks for keyboard.  </td>
+<td align="left" valign="top" class="issue">Don't initialize file callbacks for keyboard port.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37636<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">BSOD 0x7E found with v19.5.5 HPConsumerPUWP.inf while performing Windows Driver Verifier  </td>
+<td align="left" valign="top" class="issue">  </td>
+<td align="left" valign="top" class="issue">  </td>
+</tr>
+</tbody></table>
+<br>
+Feature Added
+<table border="1" cellpadding="5" width="800px">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:90%" bordercolor=white>Description</th>
+</tr>
+<tr>
+<td>
+HDR-37645<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top">Rename publisher name for all appx  </td>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.5
+
+Date: 10-20-2017</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-37464<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP_Win10 S] No content on the Help window on v19.5.2 HPConsumerPUWP driver  </td>
+<td align="left" valign="top" class="issue">Help string is removed.  </td>
+<td align="left" valign="top" class="issue">Hide help control on UI  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37471<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP_Win10 S] The speed of 1F & 2F edge motion scroll up is faster then scroll down in MS IE Browser  </td>
+<td align="left" valign="top" class="issue">MS IE and MS Edge have different handling for positive and negative scrolling direction, even with the same amount of scrolling. In general, negative direction scrolling about half distance comparing to positive direction.  </td>
+<td align="left" valign="top" class="issue">Increase speed for negative scrolling direction.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37529<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP] Load Profile setting will open Mouse properties window  </td>
+<td align="left" valign="top" class="issue">ClickPad Profiles button should be removed  </td>
+<td align="left" valign="top" class="issue">Removed ClickPad Profiles button.  </td>
+</tr>
+</tbody></table>
+<br>
+Feature Added
+<table border="1" cellpadding="5" width="800px">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:90%" bordercolor=white>Description</th>
+</tr>
+<tr>
+<td>
+HDR-37572<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top">PUWP: Remove all auxiliary drivers when uninstall device with remove driver software   </td>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.4
+
+Date: 10-13-2017</strong></div><br><br>
+<tr>
+<td class="td">
+</td><table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-37466<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP_Win10 S] Right click touchpad tray icon on Windows taskbar and then click touchpad properties, but there is no response  </td>
+<td align="left" valign="top" class="issue">Tray icon selection control was not removed  </td>
+<td align="left" valign="top" class="issue">Remove tray icon selection control in appx  </td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div id="version"><div id="header"><strong>Version:  19.5.3
+
+Date: 10-06-2017</strong></div><br><br>
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<th style="width:10%" bordercolor=white>Issue Number</th>
+<th style="width:20%" bordercolor=white>Description</th>
+<th style="width:40%" bordercolor=white>Root Cause</th>
+<th style="width:30%" bordercolor=white>Solution</th></tr>
+<tr>
+<td class="td">
+HDR-37457<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">PNPID request: SYN3279 SYN327A for HP 2018 pavilion 14"  </td>
+<td align="left" valign="top" class="issue">Customer request.  </td>
+<td align="left" valign="top" class="issue">Add PNPID SYN3279 and SYN327A.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37470<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP_Win10 S] There is no response while clicking the Practice Button on the window of 1F and 2F scroll  </td>
+<td align="left" valign="top" class="issue">Tutorial app is removed for all PUWP packages  </td>
+<td align="left" valign="top" class="issue">Hide practice button control for HPConsumerPUWP.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37471<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP_Win10 S] The speed of 1F & 2F edge motion scroll up is faster then scroll down in MS IE Browser  </td>
+<td align="left" valign="top" class="issue">MS IE and MS Edge have different handling for positive and negative scrolling direction, even with the same amount of scrolling. In general, negative direction scrolling about half distance comparing to positive direction.  </td>
+<td align="left" valign="top" class="issue">Increase speed for negative scrolling direction.  </td>
+</tr>
+<tr>
+<td class="td">
+HDR-37472<font color="green">  &checkmark;</font>  </td>
+<td align="left" valign="top" class="issue">[HPConsumerPUWP_Win10 S] Synaptics TouchPad icon found in Control Panel, SynTPCpl.dll could not be found  </td>
+<td align="left" valign="top" class="issue">Device discovery enhancement feature should be removed.  </td>
+<td align="left" valign="top" class="issue">Removed device discovery enhancement in control panel in all group settings of HPConsumerPUWP.
+</td>
+</tr>
+</tbody></table>
+<br>
+<div id="footer">
+</div>
+</div>
+
+<br>
+<div style="clear: both"></div>
+<div id="footer">
+<h3> </h3>
+<p>&copy; 2013-2018 Synaptics, Inc. All rights reserved</p>
+</div>
+</div>
+</body>
+</html>
