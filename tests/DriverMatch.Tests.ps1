@@ -41,6 +41,133 @@ Describe 'Driver Matching Logic' {
         }
     }
 
+    Context 'Compare-DriverVersion' {
+        It 'Returns 0 for equal versions' {
+            Compare-DriverVersion -VersionA '8.5.10101.6917' -VersionB '8.5.10101.6917' | Should -Be 0
+        }
+
+        It 'Returns 1 when A is greater' {
+            Compare-DriverVersion -VersionA '8.7.10201.13396' -VersionB '8.5.10101.6917' | Should -Be 1
+        }
+
+        It 'Returns -1 when A is lesser' {
+            Compare-DriverVersion -VersionA '8.5.10101.6917' -VersionB '8.7.10201.13396' | Should -Be -1
+        }
+
+        It 'Handles different segment counts' {
+            Compare-DriverVersion -VersionA '22.100.0.3' -VersionB '20.100.10.6' | Should -Be 1
+        }
+
+        It 'Handles null versions' {
+            Compare-DriverVersion -VersionA $null -VersionB '1.0' | Should -Be -1
+            Compare-DriverVersion -VersionA '1.0' -VersionB $null | Should -Be 1
+            Compare-DriverVersion -VersionA $null -VersionB $null | Should -Be 0
+        }
+    }
+
+    Context 'Remove-DuplicateDriverVersions' {
+        BeforeAll {
+            Mock Write-Section {}
+            Mock Write-AutoDerivaLog { Write-Host "LOG: $Message" }
+        }
+
+        It 'Keeps newest version when multiple drivers share HWIDs' {
+            $drivers = @(
+                [PSCustomObject]@{ FileName = 'dptf_acpi.inf'; InfPath = 'drivers\model\dptf-v8.5\dptf_acpi.inf'; HardwareIDs = 'ACPI\INT3400;ACPI\INT3401'; Version = '8.5.10101.6917'; Class = 'System' }
+                [PSCustomObject]@{ FileName = 'dptf_acpi.inf'; InfPath = 'drivers\model\dptf-v8.7\dptf_acpi.inf'; HardwareIDs = 'ACPI\INT3400;ACPI\INT3401'; Version = '8.7.10201.13396'; Class = 'System' }
+            )
+
+            $result = @(Remove-DuplicateDriverVersions -DriverMatches $drivers)
+            $result.Count | Should -Be 1
+            $result[0].Version | Should -Be '8.7.10201.13396'
+        }
+
+        It 'Keeps all drivers when HWIDs do not overlap' {
+            $drivers = @(
+                [PSCustomObject]@{ FileName = 'audio.inf'; InfPath = 'drivers\model\audio\audio.inf'; HardwareIDs = 'HDAUDIO\FUNC_01'; Version = '1.0'; Class = 'Media' }
+                [PSCustomObject]@{ FileName = 'net.inf'; InfPath = 'drivers\model\net\net.inf'; HardwareIDs = 'PCI\VEN_8086&DEV_1234'; Version = '2.0'; Class = 'Net' }
+            )
+
+            $result = @(Remove-DuplicateDriverVersions -DriverMatches $drivers)
+            $result.Count | Should -Be 2
+        }
+
+        It 'Returns input unchanged when only one driver' {
+            $drivers = @(
+                [PSCustomObject]@{ FileName = 'single.inf'; InfPath = 'drivers\model\single.inf'; HardwareIDs = 'PCI\A'; Version = '1.0'; Class = 'System' }
+            )
+
+            $result = @(Remove-DuplicateDriverVersions -DriverMatches $drivers)
+            $result.Count | Should -Be 1
+        }
+
+        It 'Handles three versions, keeps only newest' {
+            $drivers = @(
+                [PSCustomObject]@{ FileName = 'drv.inf'; InfPath = 'drivers\m\v1\drv.inf'; HardwareIDs = 'ACPI\DEV1'; Version = '1.0.0.0'; Class = 'System' }
+                [PSCustomObject]@{ FileName = 'drv.inf'; InfPath = 'drivers\m\v3\drv.inf'; HardwareIDs = 'ACPI\DEV1'; Version = '3.0.0.0'; Class = 'System' }
+                [PSCustomObject]@{ FileName = 'drv.inf'; InfPath = 'drivers\m\v2\drv.inf'; HardwareIDs = 'ACPI\DEV1'; Version = '2.0.0.0'; Class = 'System' }
+            )
+
+            $result = @(Remove-DuplicateDriverVersions -DriverMatches $drivers)
+            $result.Count | Should -Be 1
+            $result[0].Version | Should -Be '3.0.0.0'
+        }
+    }
+
+    Context 'Select-ModelFromInventory' {
+        BeforeAll {
+            Mock Write-Section {}
+            Mock Write-AutoDerivaLog { Write-Host "LOG: $Message" }
+        }
+
+        It 'Filters inventory by model when Config.Model is set' {
+            $Script:Config = @{ Model = 'hp-240-g8' }
+            $inventory = @(
+                [PSCustomObject]@{ InfPath = 'drivers\hp-240-g8\bt\bt.inf'; ModelName = 'hp-240-g8'; HardwareIDs = 'USB\A' }
+                [PSCustomObject]@{ InfPath = 'drivers\gw1-w149\audio\audio.inf'; ModelName = 'gw1-w149'; HardwareIDs = 'PCI\B' }
+                [PSCustomObject]@{ InfPath = 'drivers\hp-240-g8\net\net.inf'; ModelName = 'hp-240-g8'; HardwareIDs = 'PCI\C' }
+            )
+
+            $result = @(Select-ModelFromInventory -DriverInventory $inventory)
+            $result.Count | Should -Be 2
+            $result | ForEach-Object { $_.ModelName | Should -Be 'hp-240-g8' }
+        }
+
+        It 'Returns full inventory when model not found' {
+            $Script:Config = @{ Model = 'nonexistent-model' }
+            $inventory = @(
+                [PSCustomObject]@{ InfPath = 'drivers\hp-240-g8\bt.inf'; ModelName = 'hp-240-g8'; HardwareIDs = 'USB\A' }
+            )
+
+            $result = @(Select-ModelFromInventory -DriverInventory $inventory)
+            $result.Count | Should -Be 1
+        }
+
+        It 'Returns full inventory when ScanAllModels behavior (no model set, fallback)' {
+            $Script:Config = @{ Model = $null }
+            Mock Read-Host { return '0' }
+            $inventory = @(
+                [PSCustomObject]@{ InfPath = 'drivers\hp-240-g8\bt.inf'; ModelName = 'hp-240-g8'; HardwareIDs = 'USB\A' }
+                [PSCustomObject]@{ InfPath = 'drivers\gw1-w149\audio.inf'; ModelName = 'gw1-w149'; HardwareIDs = 'PCI\B' }
+            )
+
+            $result = @(Select-ModelFromInventory -DriverInventory $inventory)
+            $result.Count | Should -Be 2
+        }
+
+        It 'Extracts model from InfPath when ModelName column is missing' {
+            $Script:Config = @{ Model = 'hp-240-g8' }
+            $inventory = @(
+                [PSCustomObject]@{ InfPath = 'drivers\hp-240-g8\bt\bt.inf'; HardwareIDs = 'USB\A' }
+                [PSCustomObject]@{ InfPath = 'drivers\gw1-w149\audio\audio.inf'; HardwareIDs = 'PCI\B' }
+            )
+
+            $result = @(Select-ModelFromInventory -DriverInventory $inventory)
+            $result.Count | Should -Be 1
+            $result[0].InfPath | Should -BeLike 'drivers\hp-240-g8\*'
+        }
+    }
+
     Context 'Get-SystemHardware' {
         BeforeAll {
             Mock Write-Section {}

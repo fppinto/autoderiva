@@ -55,6 +55,10 @@ param(
     [ValidateSet('Parallel', 'Single')][string]$HashVerifyMode = 'Parallel',
     [int]$HashVerifyMaxConcurrency,
 
+    # Model selection
+    [string]$Model,
+    [switch]$ScanAllModels,
+
     # Driver scan behavior
     [switch]$ScanOnlyMissingDrivers,
     [switch]$ScanOnlyProblemDevices,
@@ -640,6 +644,9 @@ $DefaultConfig = @{
     HashMismatchPolicy                = 'Continue'
     HashVerifyMode                    = 'Parallel'
     HashVerifyMaxConcurrency          = 5
+    # Model selection
+    Model                             = $null
+    ScanAllModels                     = $false
     # New defaults
     ScanOnlyMissingDrivers            = $false
     ScanOnlyProblemDevices            = $true
@@ -843,6 +850,10 @@ if ($PSBoundParameters.Count -gt 0) {
     if ($PSBoundParameters.ContainsKey('HashVerifyMode') -and $HashVerifyMode) { $Config.HashVerifyMode = $HashVerifyMode }
     if ($PSBoundParameters.ContainsKey('HashVerifyMaxConcurrency') -and $HashVerifyMaxConcurrency -gt 0) { $Config.HashVerifyMaxConcurrency = $HashVerifyMaxConcurrency }
 
+    # Model selection
+    if ($PSBoundParameters.ContainsKey('Model') -and $Model) { $Config.Model = $Model }
+    if ($PSBoundParameters.ContainsKey('ScanAllModels')) { $Config.ScanAllModels = $true }
+
     # Driver scan toggles
     if ($PSBoundParameters.ContainsKey('ScanOnlyMissingDrivers')) { $Config.ScanOnlyMissingDrivers = $true; $Config.ScanOnlyProblemDevices = $false }
     if ($PSBoundParameters.ContainsKey('ScanOnlyProblemDevices')) { $Config.ScanOnlyProblemDevices = $true; $Config.ScanOnlyMissingDrivers = $false }
@@ -925,6 +936,9 @@ Options:
     -HashMismatchPolicy <mode>   On SHA256 mismatch: Continue|SkipDriver|Abort (default from config: $($Config.HashMismatchPolicy)).
     -HashVerifyMode <mode>       Hash verification mode: Parallel|Single (default from config: $($Config.HashVerifyMode)).
     -HashVerifyMaxConcurrency <n>Max parallel hash workers when HashVerifyMode=Parallel (default from config: $($Config.HashVerifyMaxConcurrency)).
+
+    -Model <name>                Select a specific device model folder (e.g. hp-240-g8). Skips interactive menu.
+    -ScanAllModels               Skip model selection and match against all models (legacy behavior).
 
     -ScanOnlyMissingDrivers      Only scan devices missing drivers (default from config: $($Config.ScanOnlyMissingDrivers)).
     -ScanOnlyProblemDevices      Only scan devices with specific problem codes (overrides ScanOnlyMissingDrivers; default from config: $($Config.ScanOnlyProblemDevices)).
@@ -2922,6 +2936,269 @@ function Clear-WifiProfile {
 }
 
 # .SYNOPSIS
+#     Compares two dot-separated version strings numerically.
+# .PARAMETER VersionA
+#     First version string (e.g. "8.5.10101.6917").
+# .PARAMETER VersionB
+#     Second version string (e.g. "8.7.10201.13396").
+# .OUTPUTS
+#     Int. -1 if A < B, 0 if equal, 1 if A > B.
+function Compare-DriverVersion {
+    param([string]$VersionA, [string]$VersionB)
+
+    if (-not $VersionA -and -not $VersionB) { return 0 }
+    if (-not $VersionA) { return -1 }
+    if (-not $VersionB) { return 1 }
+
+    $partsA = $VersionA -split '\.'
+    $partsB = $VersionB -split '\.'
+    $maxLen = [Math]::Max($partsA.Count, $partsB.Count)
+
+    for ($i = 0; $i -lt $maxLen; $i++) {
+        $a = 0; $b = 0
+        if ($i -lt $partsA.Count) { [void][int]::TryParse($partsA[$i], [ref]$a) }
+        if ($i -lt $partsB.Count) { [void][int]::TryParse($partsB[$i], [ref]$b) }
+        if ($a -lt $b) { return -1 }
+        if ($a -gt $b) { return 1 }
+    }
+    return 0
+}
+
+# .SYNOPSIS
+#     Removes duplicate driver versions that target the same hardware IDs.
+#     When multiple INFs share overlapping HardwareIDs, keeps only the newest version.
+# .PARAMETER DriverMatches
+#     The list of matched driver inventory rows.
+# .OUTPUTS
+#     PSCustomObject[]. Deduplicated list of driver objects.
+function Remove-DuplicateDriverVersions {
+    param($DriverMatches)
+
+    if (-not $DriverMatches -or $DriverMatches.Count -le 1) { return $DriverMatches }
+
+    # Build a lookup from each HWID to the list of drivers that contain it
+    $hwidToDrivers = @{}
+    foreach ($drv in $DriverMatches) {
+        $hwids = @()
+        if ($drv.PSObject.Properties.Name -contains 'HardwareIDs' -and $drv.HardwareIDs) {
+            $hwids = ($drv.HardwareIDs -split ';') | ForEach-Object { $_.Trim().ToUpper() } | Where-Object { $_ }
+        }
+        foreach ($hwid in $hwids) {
+            if (-not $hwidToDrivers.ContainsKey($hwid)) {
+                $hwidToDrivers[$hwid] = [System.Collections.Generic.List[object]]::new()
+            }
+            $hwidToDrivers[$hwid].Add($drv)
+        }
+    }
+
+    # Group drivers that share any HWID using union-find style grouping
+    $driverToGroup = @{}
+    $groupId = 0
+    $groups = @{}
+
+    foreach ($drv in $DriverMatches) {
+        $infPath = $null
+        if ($drv.PSObject.Properties.Name -contains 'InfPath') { $infPath = $drv.InfPath }
+        if (-not $infPath) { continue }
+        $key = $infPath.ToLowerInvariant()
+
+        if ($driverToGroup.ContainsKey($key)) { continue }
+
+        # Find all drivers sharing any HWID with this driver (transitive)
+        $visited = New-Object 'System.Collections.Generic.HashSet[string]'
+        $queue = New-Object 'System.Collections.Generic.Queue[object]'
+        $queue.Enqueue($drv)
+        [void]$visited.Add($key)
+
+        while ($queue.Count -gt 0) {
+            $current = $queue.Dequeue()
+            $curHwids = @()
+            if ($current.PSObject.Properties.Name -contains 'HardwareIDs' -and $current.HardwareIDs) {
+                $curHwids = ($current.HardwareIDs -split ';') | ForEach-Object { $_.Trim().ToUpper() } | Where-Object { $_ }
+            }
+            foreach ($hwid in $curHwids) {
+                if ($hwidToDrivers.ContainsKey($hwid)) {
+                    foreach ($neighbor in $hwidToDrivers[$hwid]) {
+                        $nKey = $null
+                        if ($neighbor.PSObject.Properties.Name -contains 'InfPath') { $nKey = $neighbor.InfPath }
+                        if (-not $nKey) { continue }
+                        $nKey = $nKey.ToLowerInvariant()
+                        if (-not $visited.Contains($nKey)) {
+                            [void]$visited.Add($nKey)
+                            $queue.Enqueue($neighbor)
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach ($v in $visited) { $driverToGroup[$v] = $groupId }
+        $groups[$groupId] = $visited
+        $groupId++
+    }
+
+    # For each group, keep only the driver with the highest version
+    $kept = New-Object 'System.Collections.Generic.HashSet[string]'
+    $skippedInfs = @{}
+
+    foreach ($gid in $groups.Keys) {
+        $members = $groups[$gid]
+        $groupDrivers = $DriverMatches | Where-Object {
+            $ip = $null
+            if ($_.PSObject.Properties.Name -contains 'InfPath') { $ip = $_.InfPath }
+            $ip -and $members.Contains($ip.ToLowerInvariant())
+        }
+
+        if (@($groupDrivers).Count -le 1) {
+            foreach ($d in @($groupDrivers)) {
+                if ($d.PSObject.Properties.Name -contains 'InfPath' -and $d.InfPath) {
+                    [void]$kept.Add($d.InfPath.ToLowerInvariant())
+                }
+            }
+            continue
+        }
+
+        # Pick the one with the highest version
+        $best = $null
+        foreach ($d in @($groupDrivers)) {
+            if (-not $best) { $best = $d; continue }
+            $bestVer = if ($best.PSObject.Properties.Name -contains 'Version') { $best.Version } else { $null }
+            $curVer = if ($d.PSObject.Properties.Name -contains 'Version') { $d.Version } else { $null }
+            if ((Compare-DriverVersion -VersionA $curVer -VersionB $bestVer) -gt 0) {
+                $best = $d
+            }
+        }
+
+        $bestInf = $best.InfPath.ToLowerInvariant()
+        [void]$kept.Add($bestInf)
+
+        # Log skipped duplicates
+        foreach ($d in @($groupDrivers)) {
+            $ip = $d.InfPath.ToLowerInvariant()
+            if ($ip -ne $bestInf) {
+                $dVer = if ($d.PSObject.Properties.Name -contains 'Version') { $d.Version } else { '?' }
+                $bVer = if ($best.PSObject.Properties.Name -contains 'Version') { $best.Version } else { '?' }
+                $cls = if ($d.PSObject.Properties.Name -contains 'Class') { $d.Class } else { 'Unknown' }
+                Write-AutoDerivaLog 'INFO' "Skipping older driver $($d.FileName) v$dVer in favor of v$bVer for [$cls]" 'Gray'
+                $skippedInfs[$ip] = $true
+            }
+        }
+    }
+
+    # Return only kept drivers (preserving original order)
+    $result = @()
+    foreach ($drv in $DriverMatches) {
+        $ip = $null
+        if ($drv.PSObject.Properties.Name -contains 'InfPath') { $ip = $drv.InfPath }
+        if ($ip -and $kept.Contains($ip.ToLowerInvariant())) { $result += $drv }
+    }
+
+    $skippedCount = $DriverMatches.Count - $result.Count
+    if ($skippedCount -gt 0) {
+        Write-AutoDerivaLog 'INFO' "Version dedup: kept $($result.Count) drivers, skipped $skippedCount older version(s)." 'Cyan'
+    }
+    return $result
+}
+
+# .SYNOPSIS
+#     Presents an interactive model selection menu and filters the driver inventory.
+# .PARAMETER DriverInventory
+#     The full driver inventory list.
+# .OUTPUTS
+#     PSCustomObject[]. Filtered inventory (or full inventory if user picks 'Scan all').
+function Select-ModelFromInventory {
+    param($DriverInventory)
+
+    Write-Section 'Model Selection'
+
+    # Extract distinct model names from InfPath (first segment after drivers\)
+    $models = @()
+    foreach ($drv in $DriverInventory) {
+        $modelName = $null
+        if ($drv.PSObject.Properties.Name -contains 'ModelName' -and $drv.ModelName) {
+            $modelName = $drv.ModelName
+        }
+        elseif ($drv.PSObject.Properties.Name -contains 'InfPath' -and $drv.InfPath) {
+            $parts = $drv.InfPath -split '[/\\]'
+            if ($parts.Count -ge 2 -and $parts[0] -eq 'drivers') { $modelName = $parts[1] }
+        }
+        if ($modelName -and $models -notcontains $modelName) { $models += $modelName }
+    }
+    $models = $models | Sort-Object
+
+    if ($models.Count -eq 0) {
+        Write-AutoDerivaLog 'WARN' 'No models found in driver inventory. Using all drivers.' 'Yellow'
+        return $DriverInventory
+    }
+
+    # Check CLI override or config
+    $selectedModel = $null
+    $cfg = $Script:Config
+    if ($cfg -is [hashtable] -and $cfg.ContainsKey('Model') -and $cfg.Model) {
+        $selectedModel = $cfg.Model
+    }
+    elseif ($cfg.PSObject -and $cfg.PSObject.Properties.Name -contains 'Model' -and $cfg.Model) {
+        $selectedModel = $cfg.Model
+    }
+
+    if (-not $selectedModel) {
+        # Display interactive menu
+        Write-Host ''
+        Write-Host '  Select your device model:' -ForegroundColor Cyan
+        Write-Host ''
+        for ($i = 0; $i -lt $models.Count; $i++) {
+            Write-Host "    [$($i + 1)] $($models[$i])" -ForegroundColor White
+        }
+        Write-Host "    [0] Scan all models" -ForegroundColor Gray
+        Write-Host ''
+
+        $resp = $null
+        try { $resp = Read-Host '  Enter selection' } catch { $resp = $null }
+
+        $choice = -1
+        if ($resp -and [int]::TryParse($resp, [ref]$choice)) {
+            if ($choice -eq 0) {
+                Write-AutoDerivaLog 'INFO' 'User selected: scan all models.' 'Cyan'
+                return $DriverInventory
+            }
+            elseif ($choice -ge 1 -and $choice -le $models.Count) {
+                $selectedModel = $models[$choice - 1]
+            }
+        }
+
+        if (-not $selectedModel) {
+            Write-AutoDerivaLog 'WARN' 'Invalid selection. Using all drivers.' 'Yellow'
+            return $DriverInventory
+        }
+    }
+
+    # Validate selected model exists
+    if ($models -notcontains $selectedModel) {
+        Write-AutoDerivaLog 'WARN' "Model '$selectedModel' not found in inventory. Available: $($models -join ', '). Using all drivers." 'Yellow'
+        return $DriverInventory
+    }
+
+    Write-AutoDerivaLog 'INFO' "Selected model: $selectedModel" 'Green'
+
+    # Filter inventory to selected model
+    $filtered = @()
+    foreach ($drv in $DriverInventory) {
+        $modelName = $null
+        if ($drv.PSObject.Properties.Name -contains 'ModelName' -and $drv.ModelName) {
+            $modelName = $drv.ModelName
+        }
+        elseif ($drv.PSObject.Properties.Name -contains 'InfPath' -and $drv.InfPath) {
+            $parts = $drv.InfPath -split '[/\\]'
+            if ($parts.Count -ge 2 -and $parts[0] -eq 'drivers') { $modelName = $parts[1] }
+        }
+        if ($modelName -eq $selectedModel) { $filtered += $drv }
+    }
+
+    Write-AutoDerivaLog 'INFO' "Filtered inventory: $($filtered.Count) drivers for model '$selectedModel'." 'Cyan'
+    return $filtered
+}
+
+# .SYNOPSIS
 #     Finds compatible drivers from the inventory based on system Hardware IDs.
 # .PARAMETER DriverInventory
 #     The driver inventory list.
@@ -3715,8 +3992,22 @@ function Main {
         $DriverInventory = Get-RemoteCsv -Url $InventoryUrl
         Write-AutoDerivaLog "INFO" "Loaded $( $DriverInventory.Count ) drivers from remote inventory." "Green"
 
+        # Model Selection — filter inventory to selected model (unless ScanAllModels)
+        $scanAll = $false
+        try { $scanAll = [bool]$Config.ScanAllModels } catch { $scanAll = $false }
+        if (-not $scanAll -and $env:AUTODERIVA_TEST -ne '1') {
+            $DriverInventory = Select-ModelFromInventory -DriverInventory $DriverInventory
+        }
+        elseif (-not $scanAll -and $env:AUTODERIVA_TEST -eq '1' -and $Config.Model) {
+            # In test mode, apply model filter without interactive menu
+            $DriverInventory = Select-ModelFromInventory -DriverInventory $DriverInventory
+        }
+
         # Match Drivers
         $DriverMatches = Find-CompatibleDriver -DriverInventory $DriverInventory -SystemHardwareIds $SystemHardwareIds
+
+        # Remove duplicate driver versions (keep newest when multiple match same HWIDs)
+        $DriverMatches = Remove-DuplicateDriverVersions -DriverMatches $DriverMatches
 
         # Install Drivers
         $InstallResults = Install-Driver -DriverMatches $DriverMatches -TempDir $TempDir

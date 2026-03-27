@@ -77,9 +77,18 @@ function Get-InfData {
         ForEach-Object { $_.Value.ToUpper() } | 
         Select-Object -Unique
 
+        $infRelPath = $InfFile.FullName.Substring($RepoRoot.Length + 1)
+        # Extract model name from the first path segment after 'drivers\'
+        $modelName = $null
+        $pathParts = $infRelPath -split '[/\\]'
+        if ($pathParts.Count -ge 2 -and $pathParts[0] -eq 'drivers') {
+            $modelName = $pathParts[1]
+        }
+
         return [PSCustomObject]@{
             FileName    = $InfFile.Name
-            InfPath     = $InfFile.FullName.Substring($RepoRoot.Length + 1) # Renamed to InfPath for clarity
+            InfPath     = $infRelPath # Renamed to InfPath for clarity
+            ModelName   = $modelName
             Class       = $class
             Provider    = $provider
             Date        = $date
