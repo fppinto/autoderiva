@@ -78,7 +78,7 @@
 - Installer caching: `Get-RemoteCsv` caches downloads per URL to avoid duplicate fetches in a single run.
 
 ## Networking & Downloads
-- Default content host: `https://raw.githubusercontent.com/supermarsx/autoderiva/main/` (overridable via `BaseUrl`).
+- Default content host: `https://raw.githubusercontent.com/fppinto/autoderiva/main/` (overridable via `BaseUrl`).
 - CSV fetches use `Invoke-WebRequest`. Downloads use retry with exponential backoff; concurrent fan-out uses runspaces to honor `MaxConcurrentDownloads`.
 - Supports offline prefetch (`DownloadAllFiles`) and integrity checking toggles to balance speed vs safety.
 

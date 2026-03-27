@@ -7,14 +7,14 @@
     <img width="978" height="513" alt="screenshot" src="https://github.com/user-attachments/assets/5bc5dcff-f764-48cb-bf46-7174357acabe" />
 </p>
 
-[![CI](https://img.shields.io/github/actions/workflow/status/supermarsx/autoderiva/ci.yml?branch=main&style=flat-square)](https://github.com/supermarsx/autoderiva/actions/workflows/ci.yml)
-![GitHub stars](https://img.shields.io/github/stars/supermarsx/autoderiva?style=flat-square)
-![GitHub forks](https://img.shields.io/github/forks/supermarsx/autoderiva?style=flat-square)
-![GitHub watchers](https://img.shields.io/github/watchers/supermarsx/autoderiva?style=flat-square)
-![Repo Size](https://img.shields.io/github/repo-size/supermarsx/autoderiva?style=flat-square)
+[![CI](https://img.shields.io/github/actions/workflow/status/fppinto/autoderiva/ci.yml?branch=main&style=flat-square)](https://github.com/fppinto/autoderiva/actions/workflows/ci.yml)
+![GitHub stars](https://img.shields.io/github/stars/fppinto/autoderiva?style=flat-square)
+![GitHub forks](https://img.shields.io/github/forks/fppinto/autoderiva?style=flat-square)
+![GitHub watchers](https://img.shields.io/github/watchers/fppinto/autoderiva?style=flat-square)
+![Repo Size](https://img.shields.io/github/repo-size/fppinto/autoderiva?style=flat-square)
 ![Driver Count](https://img.shields.io/badge/Drivers-243+-blue?style=flat-square)
 [![Documentation](https://img.shields.io/badge/Docs-Configuration-blue?style=flat-square)](docs/configuration.md)
-[![Download BAT](https://img.shields.io/badge/Download-Install--AutoDeriva.bat-blue?style=flat-square)](https://github.com/supermarsx/autoderiva/releases/latest/download/Install-AutoDeriva.bat)
+[![Download BAT](https://img.shields.io/badge/Download-Install--AutoDeriva.bat-blue?style=flat-square)](https://github.com/fppinto/autoderiva/releases/latest/download/Install-AutoDeriva.bat)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](license.md)
 
 
@@ -25,13 +25,13 @@
 Fastest (PowerShell one-liner):
 
 ```powershell
-irm https://raw.githubusercontent.com/supermarsx/autoderiva/main/scripts/Install-AutoDeriva.ps1 | iex
+irm https://raw.githubusercontent.com/fppinto/autoderiva/main/scripts/Install-AutoDeriva.ps1 | iex
 ```
 
 Recommended (Windows portable batch launcher that downloads + runs the installer and forwards arguments):
 
 ```bat
-curl -L -o Install-AutoDeriva.bat https://github.com/supermarsx/autoderiva/releases/latest/download/Install-AutoDeriva.bat
+curl -L -o Install-AutoDeriva.bat https://github.com/fppinto/autoderiva/releases/latest/download/Install-AutoDeriva.bat
 Install-AutoDeriva.bat
 ```
 
@@ -51,10 +51,10 @@ PowerShell (Windows PowerShell / PowerShell 7+):
 
 ```powershell
 # Windows PowerShell (use -UseBasicParsing on older PowerShell 5.1 hosts)
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/supermarsx/autoderiva/main/scripts/Install-AutoDeriva.ps1' -OutFile 'Install-AutoDeriva.ps1' -UseBasicParsing
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/fppinto/autoderiva/main/scripts/Install-AutoDeriva.ps1' -OutFile 'Install-AutoDeriva.ps1' -UseBasicParsing
 
 # PowerShell 7+ (pwsh) - Use native behaviour
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/supermarsx/autoderiva/main/scripts/Install-AutoDeriva.ps1' -OutFile 'Install-AutoDeriva.ps1'
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/fppinto/autoderiva/main/scripts/Install-AutoDeriva.ps1' -OutFile 'Install-AutoDeriva.ps1'
 ```
 
 After downloading, run the script with appropriate execution policy privileges:
@@ -110,7 +110,7 @@ For the full key reference (types, defaults, and notes), see `docs/configuration
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| `BaseUrl` | string | `https://raw.githubusercontent.com/supermarsx/autoderiva/main/` | Base URL used to fetch manifests and driver files. Change this to point to a different host if needed. |
+| `BaseUrl` | string | `https://raw.githubusercontent.com/fppinto/autoderiva/main/` | Base URL used to fetch manifests and driver files. Change this to point to a different host if needed. |
 | `InventoryPath` | string | `exports/driver_inventory.csv` | Path (relative to `BaseUrl`) to the driver inventory CSV. |
 | `ManifestPath` | string | `exports/driver_file_manifest.csv` | Path (relative to `BaseUrl`) to the file manifest CSV. |
 | `RemoteConfigUrl` | string/null | `null` | Optional URL to a JSON config file whose properties are applied as overrides after `config.json`. Useful for centrally managed configs. |

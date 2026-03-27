@@ -64,7 +64,7 @@ function Invoke-BatLintCheck {
     Assert-True ($text -match "(?m)^@echo off\s*$") 'BAT must start with @echo off.'
     Assert-True ($text -match "(?m)^setlocal EnableExtensions\s*$") 'BAT must use setlocal EnableExtensions.'
 
-    Assert-True ($text -match '(?m)^set "SCRIPT_URL=https://raw\.githubusercontent\.com/supermarsx/autoderiva/main/scripts/Install-AutoDeriva\.ps1"\s*$') 'BAT SCRIPT_URL must point to main scripts/Install-AutoDeriva.ps1 raw URL.'
+    Assert-True ($text -match '(?m)^set "SCRIPT_URL=https://raw\.githubusercontent\.com/fppinto/autoderiva/main/scripts/Install-AutoDeriva\.ps1"\s*$') 'BAT SCRIPT_URL must point to main scripts/Install-AutoDeriva.ps1 raw URL.'
 
     Assert-True ($text -match "(?m)%\*\s*$") 'BAT must forward args using %*.'
     Assert-True ($text -match '(?m)^exit /b %(ERRORLEVEL|RC)%\s*$') 'BAT must exit with %ERRORLEVEL% (or captured %RC%).'

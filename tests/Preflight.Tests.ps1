@@ -45,12 +45,12 @@ Describe 'Preflight checks behavior' {
         $Config.PreflightCheckNetwork = $true
         $Config.PreflightCheckGitHub = $true
         $Config.PreflightCheckBaseUrl = $true
-        $Config.BaseUrl = 'https://raw.githubusercontent.com/supermarsx/autoderiva/main/'
+        $Config.BaseUrl = 'https://raw.githubusercontent.com/fppinto/autoderiva/main/'
 
         Test-PreFlight
 
         ($calls | Where-Object { $_.Name -eq 'GitHub' -and $_.Url -eq 'https://github.com/' -and $_.Method -eq 'GET' }).Count | Should -Be 1
-        ($calls | Where-Object { $_.Name -eq 'Repo content (Inventory)' -and $_.Url -eq 'https://raw.githubusercontent.com/supermarsx/autoderiva/main/exports/driver_inventory.csv' -and $_.Method -eq 'HEAD' -and $_.AllowGetFallback -eq $true }).Count | Should -Be 1
+        ($calls | Where-Object { $_.Name -eq 'Repo content (Inventory)' -and $_.Url -eq 'https://raw.githubusercontent.com/fppinto/autoderiva/main/exports/driver_inventory.csv' -and $_.Method -eq 'HEAD' -and $_.AllowGetFallback -eq $true }).Count | Should -Be 1
     }
 
     It 'Exits when Internet (DNS) check fails and policy is Exit' {

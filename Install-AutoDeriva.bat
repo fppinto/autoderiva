@@ -11,7 +11,7 @@ REM   Install-AutoDeriva.bat
 REM   Install-AutoDeriva.bat -ShowConfig
 REM   Install-AutoDeriva.bat -ConfigUrl https://example.com/config.json -DryRun
 
-set "SCRIPT_URL=https://raw.githubusercontent.com/supermarsx/autoderiva/main/scripts/Install-AutoDeriva.ps1"
+set "SCRIPT_URL=https://raw.githubusercontent.com/fppinto/autoderiva/main/scripts/Install-AutoDeriva.ps1"
 
 REM Provide repo root to the PowerShell script (used to re-launch a stable script path when elevating)
 set "AUTODERIVA_REPOROOT=%~dp0"

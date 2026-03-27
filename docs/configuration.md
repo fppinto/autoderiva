@@ -38,7 +38,7 @@ Defaults shown below match `config.defaults.json`.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| `BaseUrl` | string | `https://raw.githubusercontent.com/supermarsx/autoderiva/main/` | Base URL used to fetch manifests and driver files. Should end with `/`. |
+| `BaseUrl` | string | `https://raw.githubusercontent.com/fppinto/autoderiva/main/` | Base URL used to fetch manifests and driver files. Should end with `/`. |
 | `InventoryPath` | string | `exports/driver_inventory.csv` | Path (relative to `BaseUrl`) to the driver inventory CSV. |
 | `ManifestPath` | string | `exports/driver_file_manifest.csv` | Path (relative to `BaseUrl`) to the driver file manifest CSV. |
 | `RemoteConfigUrl` | string/null | `null` | Optional URL to a JSON document applied as overrides (after local configs). |

@@ -27,8 +27,8 @@ Describe 'Cuco download behavior' {
         $Config.AskBeforeDownloadCuco = $false
         $Config.CucoTargetDir = $script:CucoTestDir
         $Config.CucoPrimaryUrl = 'https://cuco.inforlandia.pt/uagent/CtoolGui.exe'
-        $Config.CucoSecondaryUrl = 'https://raw.githubusercontent.com/supermarsx/autoderiva/main/cuco/CtoolGui.exe'
-        $Config.BaseUrl = 'https://raw.githubusercontent.com/supermarsx/autoderiva/main/'
+        $Config.CucoSecondaryUrl = 'https://raw.githubusercontent.com/fppinto/autoderiva/main/cuco/CtoolGui.exe'
+        $Config.BaseUrl = 'https://raw.githubusercontent.com/fppinto/autoderiva/main/'
         $Config.CucoBinaryPath = 'cuco/CtoolGui.exe'
         $Config.CucoExistingFilePolicy = 'Overwrite'
 
@@ -60,7 +60,7 @@ Describe 'Cuco download behavior' {
     }
 
     It 'Classifies primary/secondary Cuco sources as CustomUrl/GitHubRepo/None' {
-        $Config.BaseUrl = 'https://raw.githubusercontent.com/supermarsx/autoderiva/main/'
+        $Config.BaseUrl = 'https://raw.githubusercontent.com/fppinto/autoderiva/main/'
         $Config.CucoBinaryPath = 'cuco/CtoolGui.exe'
         $Config.CucoPrimaryUrl = 'https://cuco.inforlandia.pt/uagent/CtoolGui.exe'
         $Config.CucoSecondaryUrl = $null
@@ -75,7 +75,7 @@ Describe 'Cuco download behavior' {
     }
 
     It 'Allows configuring source kinds (GitHubRepo/None) directly' {
-        $Config.BaseUrl = 'https://raw.githubusercontent.com/supermarsx/autoderiva/main/'
+        $Config.BaseUrl = 'https://raw.githubusercontent.com/fppinto/autoderiva/main/'
         $Config.CucoBinaryPath = 'cuco/CtoolGui.exe'
 
         $Config.CucoPrimarySourceKind = 'GitHubRepo'
@@ -86,7 +86,7 @@ Describe 'Cuco download behavior' {
 
         $info = Get-AutoDerivaCucoSourceInfo
         $info.PrimaryKind | Should -Be 'GitHubRepo'
-        $info.PrimaryUrl | Should -Be 'https://raw.githubusercontent.com/supermarsx/autoderiva/main/cuco/CtoolGui.exe'
+        $info.PrimaryUrl | Should -Be 'https://raw.githubusercontent.com/fppinto/autoderiva/main/cuco/CtoolGui.exe'
         $info.SecondaryKind | Should -Be 'None'
     }
 
@@ -103,7 +103,7 @@ Describe 'Cuco download behavior' {
         $Config.CucoTargetDir = $script:CucoTestDir
         $Config.CucoExistingFilePolicy = 'Skip'
         $Config.CucoPrimaryUrl = 'https://cuco.inforlandia.pt/uagent/CtoolGui.exe'
-        $Config.CucoSecondaryUrl = 'https://raw.githubusercontent.com/supermarsx/autoderiva/main/cuco/CtoolGui.exe'
+        $Config.CucoSecondaryUrl = 'https://raw.githubusercontent.com/fppinto/autoderiva/main/cuco/CtoolGui.exe'
 
         $Script:Test_InvokeDownloadFile = {
             param($Url, $OutputPath, $MaxRetries)
@@ -130,7 +130,7 @@ Describe 'Cuco download behavior' {
         $Config.CucoTargetDir = $script:CucoTestDir
         $Config.CucoExistingFilePolicy = 'Overwrite'
         $Config.CucoPrimaryUrl = 'https://cuco.inforlandia.pt/uagent/CtoolGui.exe'
-        $Config.CucoSecondaryUrl = 'https://raw.githubusercontent.com/supermarsx/autoderiva/main/cuco/CtoolGui.exe'
+        $Config.CucoSecondaryUrl = 'https://raw.githubusercontent.com/fppinto/autoderiva/main/cuco/CtoolGui.exe'
 
         $Script:Test_InvokeDownloadFile = {
             param($Url, $OutputPath, $MaxRetries)

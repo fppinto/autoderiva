@@ -1,5 +1,5 @@
 {
-    "BaseUrl": "https://raw.githubusercontent.com/supermarsx/autoderiva/main/",
+    "BaseUrl": "https://raw.githubusercontent.com/fppinto/autoderiva/main/",
     "InventoryPath": "exports/driver_inventory.csv",
     "ManifestPath": "exports/driver_file_manifest.csv",
     "RemoteConfigUrl": null,

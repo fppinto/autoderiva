@@ -611,7 +611,7 @@ function Invoke-PerformanceTuning {
 
 # Default Configuration (Fallback)
 $DefaultConfig = @{
-    BaseUrl                           = "https://raw.githubusercontent.com/supermarsx/autoderiva/main/"
+    BaseUrl                           = "https://raw.githubusercontent.com/fppinto/autoderiva/main/"
     InventoryPath                     = "exports/driver_inventory.csv"
     ManifestPath                      = "exports/driver_file_manifest.csv"
     RemoteConfigUrl                   = $null
@@ -703,7 +703,7 @@ if (Test-Path $ConfigDefaultsFile) {
 }
 else {
     # Try to fetch remote defaults
-    $RemoteConfigUrl = "https://raw.githubusercontent.com/supermarsx/autoderiva/main/config.defaults.json"
+    $RemoteConfigUrl = "https://raw.githubusercontent.com/fppinto/autoderiva/main/config.defaults.json"
     Write-Host "Local defaults not found. Attempting to fetch remote defaults from $RemoteConfigUrl..." -ForegroundColor Cyan
     try {
         $RemoteConfigJson = Invoke-WebRequest -Uri $RemoteConfigUrl -UseBasicParsing -ErrorAction Stop
