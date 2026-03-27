@@ -72,7 +72,7 @@ function Get-InfData {
         }
 
         # Extract Hardware IDs (Simple heuristic scan)
-        $hwidPattern = "(PCI|USB|ACPI|HID|HDAUDIO|BTH|DISPLAY|INTELAUDIO)\\[A-Za-z0-9_&-]+"
+        $hwidPattern = "(?:PCI|USB|ACPI|HID|HDAUDIO|BTH|DISPLAY|INTELAUDIO)\\[A-Za-z0-9_&-]+"
         $hwids = [Regex]::Matches($text, $hwidPattern, "IgnoreCase") | 
         ForEach-Object { $_.Value.ToUpper() } | 
         Select-Object -Unique
