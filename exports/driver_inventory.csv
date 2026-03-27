@@ -50,6 +50,8 @@
 "ibtusb.inf","drivers\hp-240-g8\sp136485-intel-wireless-bluetooth\WSP\ibtusb.inf","hp-240-g8","Bluetooth","%PROVIDER_NAME%","11/09/2021","22.100.0.2","USB"
 "Rtkfilter.inf","drivers\hp-240-g8\sp148374-realtek-bluetooth\0\Rtkfilter.inf","hp-240-g8","Bluetooth","%REALTEK%","05/15/2023","1.9.1051.3009","USB"
 "Rtkfilter.inf","drivers\hp-240-g8\sp148374-realtek-bluetooth\1\Rtkfilter.inf","hp-240-g8","Bluetooth","%REALTEK%","05/15/2023","1.10.1061.3005","USB"
+"rtkfilter.inf","drivers\hp-255-g7\realtek-bluetooth-8821\rtkfilter.inf","hp-255-g7","Bluetooth","%REALTEK%","09/11/2023","1.9.1040.1014","USB"
+"netrtwlane.inf","drivers\hp-255-g7\realtek-wlan-rtl8723\netrtwlane.inf","hp-255-g7","Net","%Realtek%","04/22/2019","2023.79.0419.2019","PCI"
 "SynPD.inf","drivers\hp-255-g7\sp147480-synaptics-touchpad\1_Drv\SynPD.inf","hp-255-g7","Mouse","%Provider%","04/20/2020","19.5.35.54","ACPI;HID;USB"
 "SynRMIHID.inf","drivers\hp-255-g7\sp147480-synaptics-touchpad\1_Drv\SynRMIHID.inf","hp-255-g7","HIDClass","%Provider%","04/20/2020","19.5.35.54","HID"
 "SynService.inf","drivers\hp-255-g7\sp147480-synaptics-touchpad\1_Drv\SynService.inf","hp-255-g7","SoftwareComponent","%Provider%","04/20/2020","19.5.35.54",""
