@@ -112,7 +112,13 @@ param(
 if ($env:AUTODERIVA_TEST -ne '1') {
     if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
         Write-Host "Requesting administrative privileges..." -ForegroundColor Yellow
-        $noExit = ($env:AUTODERIVA_NOEXIT -eq '1')
+        # Keep the elevated window open when:
+        #   - caller explicitly requests it (AUTODERIVA_NOEXIT=1), OR
+        #   - the session is interactive and we are not running in CI.
+        # This ensures errors are visible when launched from cmd/Terminal directly,
+        # not just when launched via Explorer (where the BAT sets AUTODERIVA_NOEXIT=1).
+        $noExit = ($env:AUTODERIVA_NOEXIT -eq '1') -or
+                  ([Environment]::UserInteractive -and $env:CI -ne '1' -and $env:AUTODERIVA_TEST -ne '1')
         $elevatedArgList = @('-NoProfile', '-ExecutionPolicy', 'Bypass')
         if ($noExit) { $elevatedArgList += '-NoExit' }
 
