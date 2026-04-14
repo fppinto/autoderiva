@@ -299,6 +299,27 @@ When driver content changes, regenerate both exports from the repo root:
 ```powershell
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\dev-scripts\Generate-Manifests.ps1
 ```
+
+On macOS / Linux (Python, no PowerShell required):
+
+```bash
+python3 dev-scripts/generate_inventory.py
+```
+
+### Exporting third-party drivers from an existing Windows installation
+
+If you have a machine already set up with the correct drivers, you can export all third-party (non-inbox) drivers in one shot using DISM. This is the quickest way to collect drivers to add to the repository.
+
+Run the following command in an **elevated Command Prompt or PowerShell** window:
+
+```bat
+DISM /online /export-driver /destination:"C:\DriversBackup"
+```
+
+Each driver is exported into its own subfolder under `C:\DriversBackup`, ready to be reviewed and imported into the `drivers/` tree. After copying the relevant folders in, regenerate the inventory and manifest as described above.
+
+> **Note:** DISM only exports drivers that are already staged in the Windows Driver Store. Drivers that were installed without being added to the store (e.g. some legacy `.exe`-based installers) will not appear in the export.
+
 ## 📜 Scripts
 
 *   \Install-AutoDeriva.ps1\: The main installer script.
