@@ -4,8 +4,8 @@
 
 [Version]
 Signature="$WINDOWS NT$"
-Class=MEDIA ; TODO: edit Class
-ClassGuid={4d36e96c-e325-11ce-bfc1-08002be10318} ; TODO: edit ClassGuid
+Class=MEDIA
+ClassGuid={4d36e96c-e325-11ce-bfc1-08002be10318}
 Provider = Everest Semiconductor Co., Ltd
 CatalogFile=ESAuDriver.cat
 DriverVer = 08/24/2021,1.0.2.4
