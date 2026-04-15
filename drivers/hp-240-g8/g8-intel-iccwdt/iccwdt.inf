@@ -1,0 +1,81 @@
+;   ICCWDT.INF
+;	Intel(R) Watchdog Timer Driver (Intel(R) WDT) - INF file
+;	Copyright (c) 2009-2015 Intel Corporation. All rights reserved.
+
+[Version]
+Signature      = "$WINDOWS NT$"
+Class          = System
+ClassGuid      = {4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider       = %INTC%
+DriverVer = 02/05/2021,11.7.0.1002
+CatalogFile    = iccwdt.cat
+
+[DestinationDirs]
+DefaultDestDir  = 12
+
+;-------------------------------------------------------------------------
+; Device Install Section
+;-------------------------------------------------------------------------
+[Manufacturer]
+%INTC%=INTC,ntx86,ntamd64
+
+[SourceDisksNames]
+1=%DISK_NAME%,
+
+[SourceDisksFiles]
+iccwdt.sys=1
+
+[SourceDisksFiles.amd64]
+iccwdt.sys=1,\x64
+
+; For Win2K
+[INTC]
+
+; For XP and later
+[INTC.ntx86]
+; DisplayName            Section           DeviceId
+; -----------            -------           --------
+%ICCWDT.DRVDESC%=ICCWDT, ACPI\INT3F0D
+
+[INTC.ntamd64]
+; DisplayName            Section           DeviceId
+; -----------            -------           --------
+%ICCWDT.DRVDESC%=ICCWDT, ACPI\INT3F0D
+
+[ICCWDT.nt]
+CopyFiles=ICCWDT.CopyFiles
+
+[ICCWDT.CopyFiles]
+ICCWDT.sys
+
+[ICCWDT.nt.HW]
+AddReg=ICCWDT.Security
+
+[ICCWDT.HW]
+AddReg=ICCWDT.Security
+
+[ICCWDT.Security]
+HKR,,DeviceCharacteristics,0x10001,0x100
+HKR,,Security,,"D:P(A;;GA;;;SY)"
+
+[ICCWDT.NT.Services]
+AddService     = ICCWDT,0x00000002,ICCWDT_Service
+
+[ICCWDT_Service]
+DisplayName    = %ICCWDT.SVCDESC%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\ICCWDT.sys
+
+
+;------------------------------------------------------------------------------
+;  String Definitions
+;------------------------------------------------------------------------------
+
+[Strings]
+INTC           	= "Intel"
+ICCWDT.SVCDESC 	= "Intel(R) Watchdog Timer Driver (Intel(R) WDT)"
+ICCWDT.DRVDESC 	= "Intel(R) Watchdog Timer Driver (Intel(R) WDT)"
+DISK_NAME      	= "Intel(R) Watchdog Timer Driver (Intel(R) WDT) -  Install Disk"
+
