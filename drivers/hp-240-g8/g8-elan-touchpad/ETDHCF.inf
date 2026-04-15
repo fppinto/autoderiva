@@ -1,0 +1,207 @@
+;============================================================================ 
+; ETDHCF.inf Installation file (.inf) for Windows 10/11.
+;
+; All Rights Reserved, Copyright(C) ELAN Microelectronics Corp. 2003-2024
+;============================================================================
+
+[Version]
+Signature="$Windows NT$"
+Class=HIDClass
+ClassGuid={745a17a0-74d3-11d0-b6fe-00a0c90f57da}	; HIDClassGuid
+Provider=%VenderName%
+CatalogFile=ETDHCF.cat
+DriverVer=02/23/2024, 22.2.48.1
+PnpLockdown=1
+
+[SourceDisksNames]
+1=%DiskName%,,
+
+[SourceDisksFiles]
+ETDHCF.sys = 1
+
+;----------------------------------------------------------------------------
+; Manufacturer Sections
+;----------------------------------------------------------------------------
+
+[Manufacturer]
+%VenderName%   = ELANMfg, NTamd64, NTamd64.6.2
+
+[ELANMfg.NTamd64]
+
+
+[ELANMfg.NTamd64.6.2]
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0702&Col02			
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0703&Col02		
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0704&Col02			
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0705&Col02			
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0706&Col02			
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0707&Col02		
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0708&Col02		
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0709&Col02			
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0710&Col02			
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0711&Col02			
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0712&Col02			
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0713&Col02			
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0714&Col02		
+;;;%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0715&Col02			; 2210, no vendor collection
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0716&Col02		
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0718&Col02		
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0719&Col02			
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_071A&Col02			
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0722&Col02			
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0723&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0724&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0725&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0726&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0727&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0728&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0729&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_072A&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_072B&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_072C&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_072D&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_072E&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0749&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_074A&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_074E&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0751&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0752&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0753&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0754&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0757&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0758&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0759&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_075A&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_075B&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_075C&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_075D&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_075E&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_075F&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0760&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0761&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0785&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0786&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0787&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0788&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0789&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_078A&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_078C&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_078D&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_078E&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_078F&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0790&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0791&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0792&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0793&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0794&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0795&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0796&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0797&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_0798&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_079A&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07B8&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07B9&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07BA&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07BD&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07BE&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07BF&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07C0&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07C1&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07C2&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07C3&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07C4&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07C5&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07C6&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07C7&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07C8&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07C9&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07CA&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07CB&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07CD&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07CE&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07CF&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07D0&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07D1&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07D2&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07DD&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07DE&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07DF&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07E0&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07E1&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07EB&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07EC&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07ED&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07FB&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07FC&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07FD&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07FE&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_07FF&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_010A&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_010B&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_010C&Col02
+%ETDHCFDeviceDesc%	= ETDHCF_Inst, HID\VEN_ELAN&DEV_010D&Col02
+
+;----------------------------------------------------------------------------
+; Install Sections
+;----------------------------------------------------------------------------
+
+[DestinationDirs]
+CopyFiles_Drivers	= 12			; Driver directory
+
+[CopyFiles_Drivers]
+ETDHCF.sys,,,0x00000001
+
+;----------------------------------------------------------------------------
+[ETDHCF_Inst]
+CopyFiles=CopyFiles_Drivers
+
+AddReg=ETDHCF_Addreg
+
+[ETDHCF_Inst.Services]
+Include = input.inf
+Needs = HID_Raw_Inst.NT.Services
+AddService = ETDHCF,,ETDHCF_Service_Inst
+
+[ETDHCF_AddReg.HW]
+HKR,,"UpperFilters",0x00010000,"ETDHCF"
+
+[ETDHCF_Inst.HW]
+AddReg = ETDHCF_AddReg.HW
+
+;----------------------------------------------------------------------------
+
+[ETDHCF_Addreg]
+HKLM,%ServiceRoot%\Elantech\ETDHCF,ETDHidI2C_Report_Type,%REG_DWORD%,1		; 0 = Regular, 1 = New Design
+
+
+;----------------------------------------------------------------------------
+; Services Sections
+;----------------------------------------------------------------------------
+
+[ETDHCF_Service_Inst]
+DisplayName	= %ETDHCF.SVCDESC%
+ServiceType   	= 1			; SERVICE_KERNEL_DRIVER
+StartType     	= 3			; SERVICE_DEMAND_START
+ErrorControl  	= 1			; SERVICE_ERROR_NORMAL
+ServiceBinary 	= %12%\ETDHCF.sys 
+
+;----------------------------------------------------------------------------
+; User visible strings
+;----------------------------------------------------------------------------
+[Strings]
+ETDHCFDeviceDesc		= "ELAN HID Class Filter Driver"
+ETDHCF.SVCDESC			= "ELAN HID Class Filter Service"
+
+Publisher 			= "ELAN Microelectronic Corp."
+TargetDir			= "Elantech"
+DiskName  			= "ELAN HID Driver Installation Disk"
+VenderName			= "ELAN HID Device"
+ServiceRoot 			= "System\CurrentControlSet\Control"
+
+; Registry Type
+REG_EXPAND_SZ			= 0x00020000 
+REG_DWORD			= 0x00010001 
+REG_MULTI_SZ			= 0x00010000
+REG_BINARY			= 0x00000001
+REG_SZ				= 0x00000000
+
