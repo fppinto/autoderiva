@@ -72,7 +72,12 @@ def main() -> None:
         print(f"ERROR: drivers directory not found: {DRIVERS_DIR}", file=sys.stderr)
         sys.exit(1)
 
-    inf_files = sorted(DRIVERS_DIR.rglob("*.inf"))
+    # Use case-insensitive match — rglob("*.inf") misses uppercase .INF files on
+    # case-sensitive filesystems (Linux CI) and on macOS with Python ≥ 3.12.
+    inf_files = sorted(
+        f for f in DRIVERS_DIR.rglob("*")
+        if f.is_file() and f.suffix.lower() == ".inf"
+    )
     print(f"Scanning {len(inf_files)} .inf files in {DRIVERS_DIR} ...")
 
     rows = []
