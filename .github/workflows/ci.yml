@@ -49,3 +49,29 @@ jobs:
       - name: Batch Runtime Test
         shell: pwsh
         run: .\dev-scripts\Batch-Check.ps1 -Mode Test
+
+  csv-sync:
+    name: CSV Sync Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run Python unit tests
+        run: python3 tests/test_generators.py
+
+      - name: Regenerate CSVs
+        run: python3 dev-scripts/generate_all.py
+
+      - name: Fail if CSVs are out of sync
+        run: |
+          if ! git diff --quiet exports/; then
+            echo "::error::Committed CSVs are out of sync with drivers/. Run 'python3 dev-scripts/generate_all.py' and commit the result."
+            git diff --stat exports/
+            exit 1
+          fi
+          echo "CSVs are up to date."

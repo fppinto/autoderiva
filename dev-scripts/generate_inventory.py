@@ -18,7 +18,7 @@ DRIVERS_DIR = REPO_ROOT / "drivers"
 OUTPUT_FILE = REPO_ROOT / "exports" / "driver_inventory.csv"
 
 HWID_RE = re.compile(
-    r'(?:PCI|USB|ACPI|HID|HDAUDIO|BTH|DISPLAY|INTELAUDIO)\\[A-Za-z0-9_&-]+',
+    r'(?:PCI|USB|ACPI|HID|HDAUDIO|BTH|BTHENUM|DISPLAY|INTELAUDIO|ROOT)\\[A-Za-z0-9_&{}.\\-]+',
     re.IGNORECASE,
 )
 
@@ -36,7 +36,11 @@ def get_inf_value(text: str, key: str) -> str | None:
 
 def parse_inf(inf_path: Path) -> dict | None:
     try:
-        text = inf_path.read_text(encoding="utf-8", errors="replace")
+        raw = inf_path.read_bytes()
+        if raw[:2] in (b'\xff\xfe', b'\xfe\xff'):
+            text = raw.decode('utf-16', errors='replace')
+        else:
+            text = raw.decode('utf-8', errors='replace')
     except Exception as e:
         print(f"  WARN: could not read {inf_path.name}: {e}", file=sys.stderr)
         return None

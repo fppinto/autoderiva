@@ -645,7 +645,7 @@ $DefaultConfig = @{
     CheckDiskSpace                    = $true
     MaxConcurrentDownloads            = 6
     SingleDownloadMode                = $false
-    VerifyFileHashes                  = $false
+    VerifyFileHashes                  = $true
     DeleteFilesOnHashMismatch         = $false
     HashMismatchPolicy                = 'Continue'
     HashVerifyMode                    = 'Parallel'
@@ -653,6 +653,15 @@ $DefaultConfig = @{
     # Model selection
     Model                             = $null
     ScanAllModels                     = $false
+    ModelDisplayNames                 = @{
+        'gw1-w149'           = 'GW1 W149'
+        'hp-240-g8'          = 'HP 240 G8'
+        'hp-255-g7'          = 'HP 255 G7'
+        'insys-wha-14p2'     = 'Insys WHA-14P2'
+        'lenovo-sf40il6'     = 'Lenovo SF40IL6'
+        'leap-t304-sf20gm7'  = 'Leap T304 SF20GM7'
+        'leap-t304-sf20pa6w' = 'Leap T304 SF20PA6W'
+    }
     # New defaults
     ScanOnlyMissingDrivers            = $false
     ScanOnlyProblemDevices            = $true
@@ -3147,13 +3156,21 @@ function Select-ModelFromInventory {
         $selectedModel = $cfg.Model
     }
 
+    # Build display name lookup from config (falls back to raw folder name)
+    $displayNames = @{}
+    $cfg = $Script:Config
+    if ($cfg -is [hashtable] -and $cfg.ContainsKey('ModelDisplayNames') -and $cfg.ModelDisplayNames) {
+        foreach ($key in $cfg.ModelDisplayNames.Keys) { $displayNames[$key] = $cfg.ModelDisplayNames[$key] }
+    }
+    foreach ($m in $models) { if (-not $displayNames.ContainsKey($m)) { $displayNames[$m] = $m } }
+
     if (-not $selectedModel) {
         # Display interactive menu
         Write-Host ''
         Write-Host '  Select your device model:' -ForegroundColor Cyan
         Write-Host ''
         for ($i = 0; $i -lt $models.Count; $i++) {
-            Write-Host "    [$($i + 1)] $($models[$i])" -ForegroundColor White
+            Write-Host "    [$($i + 1)] $($displayNames[$models[$i]])" -ForegroundColor White
         }
         Write-Host "    [0] Scan all models" -ForegroundColor Gray
         Write-Host ''
@@ -3173,15 +3190,33 @@ function Select-ModelFromInventory {
         }
 
         if (-not $selectedModel) {
-            Write-AutoDerivaLog 'WARN' 'Invalid selection. Using all drivers.' 'Yellow'
-            return $DriverInventory
+            Write-Host ''
+            Write-Host '  No matching model found for this hardware.' -ForegroundColor Yellow
+            Write-Host ''
+            Write-Host '    [1] Scan all models anyway' -ForegroundColor White
+            Write-Host '    [2] Exit' -ForegroundColor White
+            Write-Host ''
+            $resp2 = $null
+            try { $resp2 = Read-Host '  Enter selection' } catch { $resp2 = $null }
+            $choice2 = -1
+            if ($resp2 -and [int]::TryParse($resp2, [ref]$choice2) -and $choice2 -eq 1) {
+                Write-AutoDerivaLog 'INFO' 'User chose to scan all models.' 'Cyan'
+                return $DriverInventory
+            }
+            Write-AutoDerivaLog 'INFO' 'User chose to exit.' 'Yellow'
+            exit 0
         }
     }
 
-    # Validate selected model exists
+    # Validate selected model exists (e.g. -Model CLI flag points to unknown model)
     if ($models -notcontains $selectedModel) {
-        Write-AutoDerivaLog 'WARN' "Model '$selectedModel' not found in inventory. Available: $($models -join ', '). Using all drivers." 'Yellow'
-        return $DriverInventory
+        Write-Host ''
+        Write-AutoDerivaLog 'ERROR' "Model '$selectedModel' not found in driver inventory." 'Red'
+        Write-Host ''
+        Write-Host '  Available models:' -ForegroundColor Cyan
+        foreach ($m in $models) { Write-Host "    - $($displayNames[$m])  ($m)" -ForegroundColor White }
+        Write-Host ''
+        exit 1
     }
 
     Write-AutoDerivaLog 'INFO' "Selected model: $selectedModel" 'Green'

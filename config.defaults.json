@@ -32,6 +32,15 @@
     "HashVerifyMaxConcurrency": 5,
     "Model": null,
     "ScanAllModels": false,
+    "ModelDisplayNames": {
+        "gw1-w149":           "GW1 W149",
+        "hp-240-g8":          "HP 240 G8",
+        "hp-255-g7":          "HP 255 G7",
+        "insys-wha-14p2":     "Insys WHA-14P2",
+        "lenovo-sf40il6":     "Lenovo SF40IL6",
+        "leap-t304-sf20gm7":  "Leap T304 SF20GM7",
+        "leap-t304-sf20pa6w": "Leap T304 SF20PA6W"
+    },
     "ScanOnlyMissingDrivers": false,
     "ScanOnlyProblemDevices": true,
     "ProblemDeviceCodes": [1, 10, 14, 18, 28, 31, 32, 33, 35, 37, 39, 43, 48],
