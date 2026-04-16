@@ -175,6 +175,15 @@ if ($env:AUTODERIVA_TEST -ne '1') {
                 $elevatedArgList += @("-$key", ([string]$value).ToLowerInvariant())
                 continue
             }
+            # Arrays (e.g. [int[]] $ProblemDeviceCodes) must be expanded as
+            # repeated -Key value pairs; casting to [string] would collapse them
+            # into a single space-separated token that PowerShell can't re-parse.
+            if ($value -is [System.Array]) {
+                foreach ($item in $value) {
+                    $elevatedArgList += @("-$key", [string]$item)
+                }
+                continue
+            }
             $elevatedArgList += @("-$key", [string]$value)
         }
 

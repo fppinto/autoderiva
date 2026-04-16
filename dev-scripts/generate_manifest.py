@@ -58,11 +58,14 @@ def main() -> None:
         print(f"ERROR: drivers directory not found: {DRIVERS_DIR}", file=sys.stderr)
         sys.exit(1)
 
-    # Exclude hidden/OS metadata files (.DS_Store, .gitkeep, etc.) — they are
-    # not driver files and not fetched by the installer.
+    # Exclude hidden/OS metadata files (.DS_Store, .gitkeep, etc.) and log
+    # files — they are not driver files and not fetched by the installer.
+    _SKIP_EXTENSIONS = {".log"}
     files = sorted(
         f for f in DRIVERS_DIR.rglob("*")
-        if f.is_file() and not f.name.startswith(".")
+        if f.is_file()
+        and not f.name.startswith(".")
+        and f.suffix.lower() not in _SKIP_EXTENSIONS
     )
     print(f"Scanning {len(files)} files in {DRIVERS_DIR} ...")
 
@@ -74,9 +77,11 @@ def main() -> None:
         try:
             digest = sha256_of(f)
         except Exception as e:
-            print(f"  WARN: SHA256 failed for {f.name}: {e}", file=sys.stderr)
-            digest = None
+            print(f"  WARN: SHA256 failed for {f.name}: {e} — skipping", file=sys.stderr)
+            continue
         assoc = find_associated_inf(f)
+        if assoc is None:
+            print(f"  WARN: no associated INF found for {rel}", file=sys.stderr)
         rows.append({
             "RelativePath":  rel,
             "Size":          f.stat().st_size,

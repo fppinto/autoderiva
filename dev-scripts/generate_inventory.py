@@ -18,7 +18,7 @@ DRIVERS_DIR = REPO_ROOT / "drivers"
 OUTPUT_FILE = REPO_ROOT / "exports" / "driver_inventory.csv"
 
 HWID_RE = re.compile(
-    r'(?:PCI|USB|ACPI|HID|HDAUDIO|BTH|BTHENUM|DISPLAY|INTELAUDIO|ROOT)\\[A-Za-z0-9_&{}.\\-]+',
+    r'(?:PCI|USB|ACPI|HID|HDAUDIO|BTH|BTHENUM|DISPLAY|INTELAUDIO|MEDIA|ROOT)\\[A-Za-z0-9_&{}.\\-]+',
     re.IGNORECASE,
 )
 

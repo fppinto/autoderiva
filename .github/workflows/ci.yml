@@ -11,7 +11,7 @@ jobs:
     name: Format Check
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run Format Check
         shell: pwsh
         run: .\dev-scripts\Format-Check.ps1
@@ -23,7 +23,7 @@ jobs:
     name: Lint Check
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run Lint Check
         shell: pwsh
         run: .\dev-scripts\Lint-Check.ps1
@@ -38,7 +38,7 @@ jobs:
     name: Test Check
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Pester
         shell: pwsh
         run: |
@@ -49,6 +49,15 @@ jobs:
       - name: Batch Runtime Test
         shell: pwsh
         run: .\dev-scripts\Batch-Check.ps1 -Mode Test
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pester-results
+          path: |
+            pester-result.json
+            coverage.xml
+          if-no-files-found: ignore
 
   csv-sync:
     name: CSV Sync Check

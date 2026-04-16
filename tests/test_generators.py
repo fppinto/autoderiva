@@ -230,6 +230,10 @@ class TestHwidRegex(unittest.TestCase):
     def test_hdaudio(self):
         self.assertTrue(any("HDAUDIO" in h for h in self._hwids_from("HDAUDIO\\FUNC_01&VEN_10EC")))
 
+    def test_media(self):
+        # Realtek audio effects use MEDIA\ HWIDs
+        self.assertTrue(any("MEDIA" in h for h in self._hwids_from("MEDIA\\REALTEKEFFECTS")))
+
     def test_case_insensitive(self):
         self.assertTrue(any("PCI" in h for h in self._hwids_from("pci\\ven_8086&dev_1234")))
 
