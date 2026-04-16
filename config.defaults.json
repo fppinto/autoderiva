@@ -25,7 +25,7 @@
     "CheckDiskSpace": true,
     "MaxConcurrentDownloads": 6,
     "SingleDownloadMode": false,
-    "VerifyFileHashes": false,
+    "VerifyFileHashes": true,
     "DeleteFilesOnHashMismatch": false,
     "HashMismatchPolicy": "Continue",
     "HashVerifyMode": "Parallel",
